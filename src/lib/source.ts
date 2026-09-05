@@ -3,6 +3,7 @@ import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
 import { docsContentRoute, docsImageRoute, docsRoute } from './shared';
 import { defineDocs } from 'fumadocs-mdx/macro';
 import { metaSchema, pageSchema } from 'fumadocs-core/source/schema';
+import { getLocalePrefix, i18n } from './i18n';
 
 const docs = defineDocs({
   dir: 'content/docs',
@@ -17,28 +18,30 @@ const docs = defineDocs({
   },
 });
 
-// See https://fumadocs.dev/docs/headless/source-api for more info
 export const source = loader({
   baseUrl: docsRoute,
   source: docs.toFumadocsSource(),
+  i18n,
   plugins: [lucideIconsPlugin()],
 });
 
 export function getPageImageUrl(page: (typeof source)['$inferPage']) {
   const segments = [...page.slugs, 'image.webp'];
+  const localePrefix = getLocalePrefix(page.locale);
 
   return {
     segments,
-    url: '/' + [page.locale, ...docsImageRoute.split('/'), ...segments].filter(Boolean).join('/'),
+    url: `${localePrefix}${docsImageRoute}/${segments.join('/')}`,
   };
 }
 
 export function getPageMarkdownUrl(page: (typeof source)['$inferPage']) {
   const segments = [...page.slugs, 'content.md'];
+  const localePrefix = getLocalePrefix(page.locale);
 
   return {
     segments,
-    url: '/' + [page.locale, ...docsContentRoute.split('/'), ...segments].filter(Boolean).join('/'),
+    url: `${localePrefix}${docsContentRoute}/${segments.join('/')}`,
   };
 }
 

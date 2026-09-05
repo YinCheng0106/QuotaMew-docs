@@ -1,0 +1,131 @@
+---
+title: FAQ
+description: Frequently asked questions about QuotaPulse.
+icon: CircleQuestionMark
+---
+
+Find answers to common questions about QuotaPulse, installation, privacy, and compatibility.
+
+## General
+
+<Accordions>
+
+<Accordion title="Is QuotaPulse free and open source?" id="free-and-open-source">
+
+Yes. QuotaPulse is free and open source and is distributed under the MIT License.
+
+</Accordion>
+
+<Accordion title="Do I need an OpenAI API key?" id="api-key">
+
+No separate OpenAI API key is required for the supported Codex integration.
+
+QuotaPulse communicates with the compatible Codex runtime installed on your Mac. Codex remains responsible for its own authentication and provider communication.
+
+</Accordion>
+
+<Accordion title="Is QuotaPulse affiliated with OpenAI or Anthropic?" id="affiliation">
+
+QuotaPulse is an independent open-source project and is not an official product of OpenAI or Anthropic.
+
+OpenAI, ChatGPT, Codex, Anthropic, Claude, and other product names and trademarks belong to their respective owners.
+
+</Accordion>
+
+</Accordions>
+
+## Installation & Updates
+
+<Accordions>
+
+<Accordion title="Why does macOS show a security warning?" id="security-warning">
+
+The current beta distribution is not yet signed and notarized with an Apple Developer ID.
+
+Because of this, macOS may require additional approval before allowing QuotaPulse to open.
+
+See the [First Launch guide](./first-launch.mdx) for the recommended steps.
+
+</Accordion>
+
+<Accordion title="Do I need to uninstall the old version before updating?" id="uninstall-before-update">
+
+No.
+
+Quit the currently running version of QuotaPulse, open the new disk image, and drag QuotaPulse into the Applications folder.
+
+When Finder asks whether you want to replace the existing application, select **Replace**.
+
+See the [Updating guide](./updating.mdx) for the complete process.
+
+</Accordion>
+
+<Accordion title="Will updating QuotaPulse remove my settings?" id="settings-after-update">
+
+Your existing settings should normally remain available when you replace QuotaPulse with a newer version.
+
+QuotaPulse stores application preferences locally, and replacing the application itself does not normally remove those preferences.
+
+</Accordion>
+
+</Accordions>
+
+## Privacy
+
+<Accordions>
+
+<Accordion title="Does QuotaPulse upload my prompts or coding activity?" id="coding-activity">
+
+QuotaPulse is designed not to intentionally upload your prompts, conversations, source code, coding history, authentication credentials, or provider session contents.
+
+Usage information needed by QuotaPulse is processed locally on your Mac.
+
+For more details, see [Privacy](./privacy.mdx).
+
+</Accordion>
+
+<Accordion title="Does QuotaPulse read my Codex credentials?" id="credentials">
+
+QuotaPulse does not read or copy your Codex authentication file.
+
+For Codex, authentication remains the responsibility of the locally installed Codex runtime.
+
+</Accordion>
+
+<Accordion title="Does QuotaPulse use analytics or cloud sync?" id="analytics">
+
+The current QuotaPulse application does not require a QuotaPulse analytics service, account, backend, or cloud sync.
+
+Future features that change this behavior will be documented before they become part of the stable product.
+
+</Accordion>
+
+</Accordions>
+
+## Compatibility
+
+<Accordions>
+
+<Accordion title="Which macOS versions are supported?" id="macos-support">
+
+QuotaPulse currently requires macOS 14 or later.
+
+</Accordion>
+
+<Accordion title="Does QuotaPulse support Intel Macs?" id="intel-mac">
+
+Intel Macs are not currently validated.
+
+QuotaPulse is currently tested primarily on Apple silicon. Intel compatibility should be treated as unverified until it has been tested and documented.
+
+</Accordion>
+
+<Accordion title="Which providers are supported?" id="providers">
+
+Codex is the currently validated provider integration.
+
+Claude Code support is implemented as an experimental and unverified integration and may require additional setup or validation.
+
+</Accordion>
+
+</Accordions>

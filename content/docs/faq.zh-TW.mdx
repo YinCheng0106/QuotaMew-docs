@@ -1,0 +1,143 @@
+---
+title: 常見問題
+description: 查看 QuotaPulse 常見問題的解答。
+icon: CircleHelp
+---
+
+這裡整理了關於 QuotaPulse、安裝、隱私權與相容性的常見問題。
+
+## 一般問題
+
+<Accordions>
+
+<Accordion title="QuotaPulse 是免費且開源的嗎？" id="free-and-open-source">
+
+是。
+
+QuotaPulse 是免費且開源的軟體，並以 MIT License 授權。
+
+</Accordion>
+
+<Accordion title="我需要 OpenAI API Key 嗎？" id="api-key">
+
+不需要額外提供 OpenAI API Key 來使用目前支援的 Codex 整合。
+
+QuotaPulse 會與你的 Mac 上可相容的 Codex runtime 溝通。
+
+Codex 本身仍負責自己的驗證與 Provider 通訊。
+
+</Accordion>
+
+<Accordion title="QuotaPulse 是 OpenAI 或 Anthropic 的官方產品嗎？" id="affiliation">
+
+不是。
+
+QuotaPulse 是一個獨立的開源專案，並不是 OpenAI 或 Anthropic 的官方產品。
+
+OpenAI、ChatGPT、Codex、Anthropic、Claude，以及其他產品名稱與商標皆屬於各自的權利人所有。
+
+</Accordion>
+
+</Accordions>
+
+## 安裝與更新
+
+<Accordions>
+
+<Accordion title="為什麼 macOS 會顯示安全性警告？" id="security-warning">
+
+目前的 QuotaPulse Beta 尚未使用 Apple Developer ID 完成簽署與公證。
+
+因此，macOS 第一次開啟 QuotaPulse 時可能會要求額外核准。
+
+請參考[首次啟動指南](./first-launch.mdx)了解建議的處理方式。
+
+</Accordion>
+
+<Accordion title="更新前需要先解除安裝舊版本嗎？" id="uninstall-before-update">
+
+不需要。
+
+先結束目前正在執行的 QuotaPulse，開啟新版 `.dmg`，再將 QuotaPulse 拖曳到 Applications（應用程式）資料夾。
+
+Finder 詢問時選擇 **取代** 即可。
+
+詳細步驟可以查看[更新指南](./updating.mdx)。
+
+</Accordion>
+
+<Accordion title="更新 QuotaPulse 會移除我的設定嗎？" id="settings-after-update">
+
+通常不會。
+
+單純取代 QuotaPulse 應用程式本身，通常不會移除已儲存在本機的偏好設定。
+
+不過在 Beta 階段，未來版本若有設定格式或行為變更，仍可能需要另外說明。
+
+</Accordion>
+
+</Accordions>
+
+## 隱私權
+
+<Accordions>
+
+<Accordion title="QuotaPulse 會上傳我的 Prompt 或程式開發活動嗎？" id="coding-activity">
+
+目前的 QuotaPulse 設計以本機處理為主。
+
+QuotaPulse 不會刻意收集或上傳你的 Prompt、對話內容、原始碼或程式開發紀錄。
+
+Provider 本身的網路與驗證行為仍由該 Provider 負責。
+
+詳細資訊請查看[隱私權](./privacy.mdx)。
+
+</Accordion>
+
+<Accordion title="QuotaPulse 會讀取我的 Codex 登入憑證嗎？" id="credentials">
+
+目前的 Codex 整合不需要 QuotaPulse 直接讀取或複製你的 Codex 驗證檔案。
+
+QuotaPulse 會透過相容的 Codex runtime 取得所需的使用資訊，而驗證仍由 Codex 自己處理。
+
+</Accordion>
+
+<Accordion title="QuotaPulse 有使用 Analytics 或 Cloud Sync 嗎？" id="analytics">
+
+目前沒有。
+
+QuotaPulse 目前沒有 QuotaPulse 帳號系統、分析追蹤、自己的雲端後端或 Cloud Sync。
+
+如果未來新增會影響隱私權的功能，相關行為會在文件中更新說明。
+
+</Accordion>
+
+</Accordions>
+
+## 相容性
+
+<Accordions>
+
+<Accordion title="QuotaPulse 支援哪些 macOS 版本？" id="macos-support">
+
+QuotaPulse 目前需要 macOS 14 或更新版本。
+
+</Accordion>
+
+<Accordion title="QuotaPulse 支援 Intel Mac 嗎？" id="intel-mac">
+
+目前主要驗證環境是 Apple silicon Mac。
+
+Intel Mac 尚未完成正式驗證，因此在文件明確標示支援以前，應視為未驗證環境。
+
+</Accordion>
+
+<Accordion title="QuotaPulse 支援哪些 Provider？" id="providers">
+
+目前 **Codex** 為已驗證支援的 Provider。
+
+**Claude Code** 支援目前仍屬於 **Experimental / Unverified**，尚未完成正式驗證。
+
+</Accordion>
+
+</Accordions>

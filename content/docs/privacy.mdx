@@ -1,0 +1,113 @@
+---
+title: Privacy
+description: Learn how QuotaPulse handles your data and provider information.
+icon: LockKeyhole
+---
+
+QuotaPulse is designed around local, privacy-first processing.
+
+It does not require a QuotaPulse account, backend service, analytics service, or cloud sync.
+
+<Callout type="info" title="Local by default">
+
+QuotaPulse processes the usage information it needs locally on your Mac.
+
+QuotaPulse does not intentionally upload your prompts, conversations, source code, coding history, authentication credentials, or provider session contents.
+
+</Callout>
+
+## What QuotaPulse accesses
+
+QuotaPulse accesses only the provider information needed to display supported quota usage and reset information.
+
+### Codex
+
+For Codex, QuotaPulse locates a compatible Codex runtime installed on your Mac and communicates with its local app-server through standard input and output.
+
+QuotaPulse requests the rate-limit information needed to display your usage.
+
+Codex remains responsible for its own authentication and provider communication.
+
+QuotaPulse does not read or copy your Codex authentication file, scrape the interactive `/status` screen, or scan your Codex session history.
+
+### Claude Code
+
+Claude Code support is currently experimental and unverified.
+
+The implemented integration reads only a small, versioned snapshot designed for QuotaPulse.
+
+It does not scan Claude transcripts, conversation history, authentication credentials, or internal usage caches.
+
+## What QuotaPulse does not intentionally collect
+
+QuotaPulse is designed not to collect or upload:
+
+- Prompts or conversation contents
+- Source code
+- Coding history
+- Authentication credentials or tokens
+- Provider transcripts or session contents
+- Repository identities
+- Private filesystem paths
+
+## Local settings
+
+QuotaPulse stores application preferences locally using macOS `UserDefaults`.
+
+These preferences can include:
+
+- Enabled providers
+- Notification settings
+- Reminder thresholds
+- Usage presentation mode
+- Pinned menu bar provider
+- Menu bar preferences
+- Onboarding state
+
+These settings are associated with the local QuotaPulse installation and are not synchronized through a QuotaPulse cloud service.
+
+## Diagnostics
+
+QuotaPulse includes a privacy-safe diagnostics report to help troubleshoot provider compatibility issues.
+
+The built-in diagnostics report contains an allowlisted set of information such as:
+
+- QuotaPulse version
+- macOS and system information
+- Provider state
+- Runtime availability
+- Connection state
+- Refresh state
+- Metadata availability
+
+The report is designed to exclude:
+
+- Authentication credentials
+- Prompts and conversations
+- Provider sessions
+- Source code and project data
+- Private filesystem paths
+- Raw provider responses
+- Exact quota percentages
+
+<Callout type="warn" title="Review information before sharing">
+
+Even when using the built-in diagnostics report, review the contents before posting them publicly.
+
+Do not attach raw provider logs, authentication files, session files, or broad system logs to public GitHub issues.
+
+</Callout>
+
+## Network access
+
+QuotaPulse itself currently does not require a QuotaPulse backend, account service, analytics service, or cloud sync.
+
+When using Codex, QuotaPulse communicates with the locally installed Codex runtime. The runtime is responsible for its normal communication with the provider and for authentication.
+
+The privacy and network behavior of ChatGPT, Codex, Claude Code, macOS, and other software running on your Mac are governed by those products and are outside QuotaPulse's implementation boundary.
+
+## Future features
+
+QuotaPulse may gain features in the future that require additional network access, such as retrieving publicly available reset information.
+
+If a future feature changes QuotaPulse's data or network behavior, this documentation will be updated to describe the new behavior before it is treated as part of the stable product.

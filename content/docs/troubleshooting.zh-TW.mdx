@@ -1,0 +1,108 @@
+---
+title: 疑難排解
+description: 查看 QuotaPulse 常見問題與建議的解決方式。
+icon: Wrench
+---
+
+如果 QuotaPulse 沒有按照預期運作，可以先從以下常見問題開始檢查。
+
+## QuotaPulse 無法開啟
+
+**症狀**
+
+macOS 顯示安全性警告，或阻止 QuotaPulse 啟動。
+
+**可以嘗試**
+
+目前的 QuotaPulse Beta 尚未使用 Apple Developer ID 完成簽署與公證，因此 macOS 第一次啟動時可能會要求額外核准。
+
+請依照[首次啟動指南](./first-launch.mdx)中的步驟操作。
+
+<Callout type="warn" title="請勿停用 macOS 的全域安全性機制">
+
+請只使用 macOS 提供的個別 App 核准方式開啟 QuotaPulse。
+
+不需要停用 Gatekeeper 或其他系統安全性功能。
+
+</Callout>
+
+## QuotaPulse 沒有出現在選單列
+
+**症狀**
+
+QuotaPulse 已經啟動，但在 macOS 選單列中找不到 QuotaPulse 圖示。
+
+**可以嘗試**
+
+先確認 QuotaPulse 是否仍在執行。
+
+如果 QuotaPulse 的設定或選單列顯示選項可用，請確認選單列圖示沒有被停用。
+
+你也可以重新結束並開啟 QuotaPulse。
+
+macOS 本身也可能因為選單列空間不足或系統設定而隱藏部分項目。
+
+**仍然無法解決？**
+
+重新開啟 QuotaPulse 後，如果選單列圖示仍然沒有出現，請在回報問題時附上你的 macOS 與 QuotaPulse 版本。
+
+## Provider 顯示為未連線
+
+**症狀**
+
+QuotaPulse 可以正常開啟，但 Provider 顯示為未連線或無法取得使用資訊。
+
+**可以嘗試**
+
+確認對應的 Provider 已經安裝、可正常使用，並且已完成自己的登入或驗證流程。
+
+QuotaPulse 不會取代 Provider 本身的驗證流程。
+
+對於 Codex，請先確認相容的 Codex runtime 在你的 Mac 上可正常使用。
+
+Claude Code 支援目前仍屬於實驗性功能，尚未完成正式驗證。
+
+**仍然無法解決？**
+
+如果 QuotaPulse 提供 Diagnostics 功能，建議複製 Diagnostics 資訊並附在問題回報中。
+
+請勿自行貼出 Token、憑證、完整 Provider 回應、私人路徑、Prompt、原始碼或其他敏感資料。
+
+## 使用資訊沒有更新
+
+**症狀**
+
+QuotaPulse 顯示的使用量或重置時間似乎沒有更新。
+
+**可以嘗試**
+
+QuotaPulse 會以保守的更新頻率取得 Provider 狀態，因此資料不一定會即時變化。
+
+如果目前版本提供手動重新整理功能，可以先嘗試手動重新整理。
+
+也可以確認 Provider 本身目前是否可以正常取得使用資訊。
+
+**仍然無法解決？**
+
+如果數值長時間沒有更新，可以重新啟動 QuotaPulse，並記錄問題發生的時間與 Provider 狀態。
+
+## 仍然需要協助？
+
+如果以上方法都沒有解決問題，可以到 QuotaPulse 的 GitHub Repository 回報。
+
+為了讓問題更容易重現，建議提供：
+
+- QuotaPulse 版本
+- macOS 版本
+- 使用的 Provider
+- 預期發生的行為
+- 實際發生的行為
+- 可以穩定重現問題的步驟
+- 必要時提供螢幕截圖
+- QuotaPulse 產生的 privacy-safe Diagnostics（如果可用）
+
+<Callout type="warn" title="回報前請檢查敏感資訊">
+
+請勿公開 API Key、Token、登入憑證、Provider Session、Prompt、原始碼、私人檔案路徑或其他敏感資訊。
+
+</Callout>
