@@ -39,7 +39,12 @@ export default function proxy(
   const pathname = request.nextUrl.pathname;
 
   // These routes are currently global rather than locale-specific.
-  if (pathname === '/llms.txt' || pathname === '/llms-full.txt') {
+  if (
+    pathname === '/llms.txt' ||
+    pathname === '/llms-full.txt' ||
+    pathname === '/sitemap.xml' ||
+    pathname === '/robots.txt'
+  ) {
     return NextResponse.next();
   }
 

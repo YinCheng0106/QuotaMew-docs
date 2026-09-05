@@ -10,7 +10,7 @@ export const homeContent = {
     },
 
     features: {
-      eyebrow: 'Why QuotaPulse',
+      eyebrow: 'Why QuotaMew',
       title: 'Stay aware without breaking your flow.',
       items: [
         {
@@ -31,7 +31,7 @@ export const homeContent = {
         {
           title: 'Privacy-first',
           description:
-            'Keep QuotaPulse lightweight with local-first processing and minimal data access.',
+            'Keep QuotaMew lightweight with local-first processing and minimal data access.',
         },
       ],
     },
@@ -69,7 +69,7 @@ export const homeContent = {
         {
           title: 'Local-first',
           description:
-            'No QuotaPulse account or cloud sync is required.',
+            'No QuotaMew account or cloud sync is required.',
         },
       ],
     },
@@ -78,8 +78,8 @@ export const homeContent = {
       eyebrow: 'Open Source',
       title: 'Built openly.',
       description:
-        'QuotaPulse is free and open source. Explore the code, report issues, or contribute on GitHub.',
-      github: 'View QuotaPulse on GitHub',
+        'QuotaMew is free and open source. Explore the code, report issues, or contribute on GitHub.',
+      github: 'View QuotaMew on GitHub',
     },
   },
 
@@ -94,7 +94,7 @@ export const homeContent = {
     },
 
     features: {
-      eyebrow: '為什麼選擇 QuotaPulse',
+      eyebrow: '為什麼選擇 QuotaMew',
       title: '掌握使用狀態，不打斷你的工作流程。',
       items: [
         {
@@ -153,7 +153,7 @@ export const homeContent = {
         {
           title: '本機優先',
           description:
-            '不需要 QuotaPulse 帳號或 Cloud Sync。',
+            '不需要 QuotaMew 帳號或 Cloud Sync。',
         },
       ],
     },
@@ -162,8 +162,8 @@ export const homeContent = {
       eyebrow: 'Open Source',
       title: '開放原始碼。',
       description:
-        'QuotaPulse 是免費且開源的專案。你可以在 GitHub 查看原始碼、回報問題或參與貢獻。',
-      github: '前往 QuotaPulse GitHub',
+        'QuotaMew 是免費且開源的專案。你可以在 GitHub 查看原始碼、回報問題或參與貢獻。',
+      github: '前往 QuotaMew GitHub',
     },
   },
 } as const;

@@ -1,28 +1,28 @@
-# QuotaPulse Docs
+# QuotaMew Docs
 
 [English](README.md) | **繁體中文**
 
-[QuotaPulse](https://github.com/YinCheng0106/QuotaPulse) 官方網站與文件的原始碼。
+[QuotaMew](https://github.com/YinCheng0106/QuotaMew) 官方網站與文件的原始碼。
 
-QuotaPulse 是一款輕量、原生的 macOS 選單列 App，用來查看 AI 程式開發工具的使用量與額度重置時間。
+QuotaMew 是一款輕量、原生的 macOS 選單列 App，用來查看 AI 程式開發工具的使用量與額度重置時間。
 
-**官方網站：** [quotapulse.yincheng.app](https://quotapulse.yincheng.app)
+**官方網站：** [quotamew.yincheng.app](https://quotamew.yincheng.app)
 
 ## 關於這個專案
 
-這個 repository 包含 QuotaPulse 官方網站與文件的原始碼。
+這個 repository 包含 QuotaMew 官方網站與文件的原始碼。
 
 主要提供：
 
-- QuotaPulse 產品與功能介紹
-- QuotaPulse 下載頁面
+- QuotaMew 產品與功能介紹
+- QuotaMew 下載頁面
 - 安裝與首次啟動指南
 - 更新方式
 - 疑難排解與常見問題
 - 隱私與相容性文件
 - 英文與臺灣繁體中文本地化
 
-QuotaPulse App 本身則由獨立的 [QuotaPulse repository](https://github.com/YinCheng0106/QuotaPulse) 維護。
+QuotaMew App 本身則由獨立的 [QuotaMew repository](https://github.com/YinCheng0106/QuotaMew) 維護。
 
 ## 技術棧
 
@@ -46,8 +46,8 @@ QuotaPulse App 本身則由獨立的 [QuotaPulse repository](https://github.com/
 Clone repository 並安裝相依套件：
 
 ```bash
-git clone https://github.com/YinCheng0106/QuotaPulse-docs
-cd QuotaPulse-docs
+git clone https://github.com/YinCheng0106/quotamew-docs.git
+cd quotamew-docs
 bun install
 ```
 
@@ -75,7 +75,7 @@ bun run build
 
 ## 多語系
 
-QuotaPulse 文件目前提供：
+QuotaMew 文件目前提供：
 
 - English — 預設語系
 - 繁體中文（台灣）— `zh-TW`
@@ -100,14 +100,14 @@ QuotaPulse 文件目前提供：
 
 正式網站：
 
-**https://quotapulse.yincheng.app**
+**https://quotamew.yincheng.app**
 
 網站目前以 Vercel 部署為主要設計目標。
 
 正式環境應設定：
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://quotapulse.yincheng.app
+NEXT_PUBLIC_SITE_URL=https://quotamew.yincheng.app
 ```
 
 此設定會用於：
@@ -117,11 +117,15 @@ NEXT_PUBLIC_SITE_URL=https://quotapulse.yincheng.app
 - 多語系 alternate links
 - 其他正式環境 metadata
 
+文件原始碼維護於 [quotamew-docs repository](https://github.com/YinCheng0106/quotamew-docs)。
+
 ## 版本資訊
 
-QuotaPulse 的下載資訊由網站中的 release configuration 統一管理。
+QuotaMew 的下載資訊由網站中的 release configuration 統一管理。
 
-發布新的 QuotaPulse 版本時，網站應同步更新：
+目前列出的 `v0.2.0-beta.1` 是以先前的 QuotaPulse 名稱發布；已公開的 artifact 下載網址因此刻意保留不變。
+
+發布新的 QuotaMew 版本時，網站應同步更新：
 
 - Release 版本
 - DMG 下載網址
@@ -134,11 +138,11 @@ QuotaPulse 的下載資訊由網站中的 release configuration 統一管理。
 
 ## 相關專案
 
-### QuotaPulse
+### QuotaMew
 
 macOS App 原始碼、Release、Issue 與開發文件皆由主要 repository 維護：
 
-[github.com/YinCheng0106/QuotaPulse](https://github.com/YinCheng0106/QuotaPulse)
+[github.com/YinCheng0106/QuotaMew](https://github.com/YinCheng0106/QuotaMew)
 
 ## 參與貢獻
 
@@ -152,10 +156,10 @@ macOS App 原始碼、Release、Issue 與開發文件皆由主要 repository 維
 - 確認文件連結與多語系路由正常。
 - 提交 Pull Request 前執行專案驗證指令。
 
-如果是 QuotaPulse App 本身的 Bug 或功能建議，請前往主要的 [QuotaPulse repository](https://github.com/YinCheng0106/QuotaPulse)。
+如果是 QuotaMew App 本身的 Bug 或功能建議，請前往主要的 [QuotaMew repository](https://github.com/YinCheng0106/QuotaMew)。
 
 ## 授權
 
 網站原始碼與文件採用 [MIT License](LICENSE) 授權。
 
-QuotaPulse 名稱、Logo 與品牌素材不因本授權而授予第三方作為其他產品品牌識別使用。
+QuotaMew 名稱、Logo 與品牌素材不因本授權而授予第三方作為其他產品品牌識別使用。

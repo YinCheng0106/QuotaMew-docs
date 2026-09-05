@@ -1,44 +1,44 @@
 ---
 title: 隱私權
-description: 了解 QuotaPulse 如何處理 Provider 資訊、本機設定與診斷資料。
+description: 了解 QuotaMew 如何處理 Provider 資訊、本機設定與診斷資料。
 icon: LockKeyhole
 ---
 
-QuotaPulse 的設計以本機處理與最小化資料存取為原則。
+QuotaMew 的設計以本機處理與最小化資料存取為原則。
 
-QuotaPulse 需要存取部分 Provider 狀態資訊，才能顯示使用量與重置時間，但不代表 QuotaPulse 會收集你的所有 Provider 資料。
+QuotaMew 需要存取部分 Provider 狀態資訊，才能顯示使用量與重置時間，但不代表 QuotaMew 會收集你的所有 Provider 資料。
 
 <Callout type="info" title="以本機處理為主">
 
-目前 QuotaPulse 不需要 QuotaPulse 帳號，也沒有自己的 Analytics、Cloud Sync 或 QuotaPulse 雲端後端。
+目前 QuotaMew 不需要 QuotaMew 帳號，也沒有自己的 Analytics、Cloud Sync 或 QuotaMew 雲端後端。
 
 Provider 本身仍可能進行自己的網路通訊與驗證。
 
 </Callout>
 
-## QuotaPulse 會存取哪些資訊？
+## QuotaMew 會存取哪些資訊？
 
 ### Codex
 
-QuotaPulse 會尋找本機可相容的 Codex runtime，並透過 Codex 提供的 runtime 介面取得使用額度與 Rate Limit 等必要資訊。
+QuotaMew 會尋找本機可相容的 Codex runtime，並透過 Codex 提供的 runtime 介面取得使用額度與 Rate Limit 等必要資訊。
 
 Codex 本身負責自己的登入、驗證與 Provider 通訊。
 
-QuotaPulse 不需要直接讀取或複製你的 Codex 驗證檔案。
+QuotaMew 不需要直接讀取或複製你的 Codex 驗證檔案。
 
-QuotaPulse 也不需要掃描你的 Codex Session 歷史或 Prompt 紀錄來取得額度資訊。
+QuotaMew 也不需要掃描你的 Codex Session 歷史或 Prompt 紀錄來取得額度資訊。
 
 ### Claude Code
 
 Claude Code 支援目前仍屬於實驗性功能，尚未完成正式驗證。
 
-目前的實作使用有限且明確的 QuotaPulse-owned snapshot 資料來源，不以掃描 Claude Code 對話紀錄、Prompt 歷史、憑證或內部使用量快取為設計目標。
+目前的實作使用有限且明確的 QuotaMew-owned snapshot 資料來源，不以掃描 Claude Code 對話紀錄、Prompt 歷史、憑證或內部使用量快取為設計目標。
 
 由於 Claude Code 整合仍在開發與驗證階段，未來行為可能調整。
 
-## QuotaPulse 不會刻意收集哪些資料？
+## QuotaMew 不會刻意收集哪些資料？
 
-QuotaPulse 的目前實作不會刻意收集或上傳：
+QuotaMew 的目前實作不會刻意收集或上傳：
 
 - Prompt
 - AI 對話內容
@@ -49,13 +49,13 @@ QuotaPulse 的目前實作不會刻意收集或上傳：
 - 完整 Provider 原始回應
 - Repository 內容
 
-這裡所描述的是 QuotaPulse 自身的資料邊界。
+這裡所描述的是 QuotaMew 自身的資料邊界。
 
 Codex、Claude Code 或其他 Provider 仍有自己的資料處理與網路行為，應另外參考各 Provider 的官方隱私權政策。
 
 ## 本機設定
 
-QuotaPulse 會在你的 Mac 上儲存應用程式設定，例如：
+QuotaMew 會在你的 Mac 上儲存應用程式設定，例如：
 
 - 是否啟用特定 Provider
 - 通知設定
@@ -66,13 +66,13 @@ QuotaPulse 會在你的 Mac 上儲存應用程式設定，例如：
 - Onboarding 狀態
 - 部分 Reset Intelligence 相關偏好
 
-這些設定用於維持 QuotaPulse 的應用程式行為與使用者偏好。
+這些設定用於維持 QuotaMew 的應用程式行為與使用者偏好。
 
 ## Diagnostics
 
-QuotaPulse 的 Diagnostics 功能設計為只輸出有限且經過篩選的診斷資訊，例如：
+QuotaMew 的 Diagnostics 功能設計為只輸出有限且經過篩選的診斷資訊，例如：
 
-- QuotaPulse 版本
+- QuotaMew 版本
 - macOS 與系統資訊
 - Provider 狀態
 - Runtime 狀態
@@ -93,7 +93,7 @@ Diagnostics 的設計不應包含：
 
 <Callout type="warn" title="分享 Diagnostics 前仍應先檢查內容">
 
-即使 QuotaPulse 的 Diagnostics 設計為 privacy-safe，在將任何診斷資訊公開貼到 GitHub Issue 或其他地方以前，仍建議先自行檢查內容。
+即使 QuotaMew 的 Diagnostics 設計為 privacy-safe，在將任何診斷資訊公開貼到 GitHub Issue 或其他地方以前，仍建議先自行檢查內容。
 
 請勿公開任何你認為敏感的資訊。
 
@@ -101,15 +101,15 @@ Diagnostics 的設計不應包含：
 
 ## 網路存取
 
-QuotaPulse 本身不需要 QuotaPulse 帳號或自己的 Cloud Sync 服務。
+QuotaMew 本身不需要 QuotaMew 帳號或自己的 Cloud Sync 服務。
 
-當 QuotaPulse 與 Codex 等 Provider runtime 互動時，Provider 本身可能會依照自己的設計進行網路通訊。
+當 QuotaMew 與 Codex 等 Provider runtime 互動時，Provider 本身可能會依照自己的設計進行網路通訊。
 
-因此，不應將「QuotaPulse 以本機處理為主」解讀為「執行 QuotaPulse 時整個系統完全不會產生任何網路連線」。
+因此，不應將「QuotaMew 以本機處理為主」解讀為「執行 QuotaMew 時整個系統完全不會產生任何網路連線」。
 
 ## 未來功能
 
-QuotaPulse 未來可能新增 Reset Intelligence 等功能，以取得公開的 Provider 狀態或重置相關資訊。
+QuotaMew 未來可能新增 Reset Intelligence 等功能，以取得公開的 Provider 狀態或重置相關資訊。
 
 如果這些功能開始使用外部網路來源，文件會在功能正式實作時說明：
 
@@ -118,4 +118,4 @@ QuotaPulse 未來可能新增 Reset Intelligence 等功能，以取得公開的 
 - 會傳送哪些資訊
 - 本機會儲存哪些資料
 
-目前不應將尚未實作的未來功能視為既有的 QuotaPulse 網路行為。
+目前不應將尚未實作的未來功能視為既有的 QuotaMew 網路行為。

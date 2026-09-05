@@ -5,7 +5,7 @@ import { MacOSSection } from '@/components/home/macos-section';
 import { OpenSourceSection } from '@/components/home/open-source';
 import { ProvidersSection } from '@/components/home/providers';
 import { getHomeContent } from '@/lib/home-content';
-import { absoluteUrl } from '@/lib/site-url';
+import { absoluteUrl, localizedAlternates } from '@/lib/site-url';
 import { localizePath } from '@/lib/i18n';
 import {
   docsRoute,
@@ -24,8 +24,8 @@ export async function generateMetadata({
   const canonicalUrl = absoluteUrl(canonicalPath);
 
   const ogTitle = isTraditionalChinese
-    ? 'QuotaPulse — 一眼掌握你的 AI 程式開發額度'
-    : 'QuotaPulse — Your AI coding quota, at a glance.';
+    ? 'QuotaMew — 一眼掌握你的 AI 程式開發額度'
+    : 'QuotaMew — Your AI coding quota, at a glance.';
 
   const ogImageUrl = absoluteUrl(
     localizePath(lang, '/og/home'),
@@ -33,23 +33,19 @@ export async function generateMetadata({
 
   return {
     title: {
-      absolute: 'QuotaPulse',
+      absolute: 'QuotaMew',
     },
     description: content.hero.description,
 
     alternates: {
       canonical: canonicalUrl,
-      languages: {
-        en: absoluteUrl('/'),
-        'zh-TW': absoluteUrl('/zh-TW'),
-        'x-default': absoluteUrl('/'),
-      },
+      languages: localizedAlternates(canonicalPath),
     },
 
     openGraph: {
       type: 'website',
       url: canonicalUrl,
-      siteName: 'QuotaPulse',
+      siteName: 'QuotaMew',
       title: ogTitle,
       description: content.hero.description,
       locale: isTraditionalChinese ? 'zh_TW' : 'en_US',

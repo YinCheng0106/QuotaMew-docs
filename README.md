@@ -1,26 +1,26 @@
-# QuotaPulse Docs
+# QuotaMew Docs
 
 **English** | [繁體中文](README.zh-TW.md)
 
-Official website and documentation source for [QuotaPulse](https://github.com/YinCheng0106/QuotaPulse), a lightweight native macOS menu bar app for monitoring AI coding usage and reset times.
+Official website and documentation source for [QuotaMew](https://github.com/YinCheng0106/QuotaMew), a lightweight native macOS menu bar app for monitoring AI coding usage and reset times.
 
-**Website:** [quotapulse.yincheng.app](https://quotapulse.yincheng.app)
+**Website:** [quotamew.yincheng.app](https://quotamew.yincheng.app)
 
 ## About
 
-This repository contains the source code and documentation for the official QuotaPulse website.
+This repository contains the source code and documentation for the official QuotaMew website.
 
 It provides:
 
 - Product overview and feature information
-- QuotaPulse download page
+- QuotaMew download page
 - Installation and first-launch guides
 - Updating instructions
 - Troubleshooting and FAQ
 - Privacy and compatibility documentation
 - English and Traditional Chinese localization
 
-The QuotaPulse application itself is maintained separately in the [QuotaPulse repository](https://github.com/YinCheng0106/QuotaPulse).
+The QuotaMew application itself is maintained separately in the [QuotaMew repository](https://github.com/YinCheng0106/QuotaMew).
 
 ## Tech Stack
 
@@ -44,8 +44,8 @@ It uses the Next.js App Router and Fumadocs for documentation routing, search, M
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/YinCheng0106/QuotaPulse-docs
-cd QuotaPulse-docs
+git clone https://github.com/YinCheng0106/quotamew-docs.git
+cd quotamew-docs
 bun install
 ```
 
@@ -73,7 +73,7 @@ bun run build
 
 ## Localization
 
-QuotaPulse documentation is currently available in:
+QuotaMew documentation is currently available in:
 
 - English — default locale
 - Traditional Chinese (Taiwan) — `zh-TW`
@@ -98,23 +98,27 @@ When updating user-facing documentation, English and Traditional Chinese content
 
 The production website is available at:
 
-**https://quotapulse.yincheng.app**
+**https://quotamew.yincheng.app**
 
 The site is designed to be deployed with Vercel.
 
 The production site URL should be configured as:
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://quotapulse.yincheng.app
+NEXT_PUBLIC_SITE_URL=https://quotamew.yincheng.app
 ```
 
 This value is used for canonical URLs, Open Graph metadata, alternate-language links, and other production metadata.
+
+The documentation source is maintained in the [quotamew-docs repository](https://github.com/YinCheng0106/quotamew-docs).
 
 ## Release Information
 
 Download information is managed centrally by the website's release configuration.
 
-When publishing a new QuotaPulse release, the website should be updated with:
+The currently listed `v0.2.0-beta.1` download was released under the previous QuotaPulse name; its published artifact URL is intentionally preserved.
+
+When publishing a new QuotaMew release, the website should be updated with:
 
 - Release version
 - DMG download URL
@@ -127,11 +131,11 @@ The website should only advertise a release as available after the corresponding
 
 ## Related Project
 
-### QuotaPulse
+### QuotaMew
 
 The macOS application source code, releases, issues, and development documentation are maintained in the main repository:
 
-[github.com/YinCheng0106/QuotaPulse](https://github.com/YinCheng0106/QuotaPulse)
+[github.com/YinCheng0106/QuotaMew](https://github.com/YinCheng0106/QuotaMew)
 
 ## Contributing
 
@@ -145,10 +149,10 @@ When contributing:
 - Verify links and localized routes.
 - Run the project verification commands before opening a pull request.
 
-For application bugs or feature requests, please use the main [QuotaPulse repository](https://github.com/YinCheng0106/QuotaPulse).
+For application bugs or feature requests, please use the main [QuotaMew repository](https://github.com/YinCheng0106/QuotaMew).
 
 ## License
 
 The website source code and documentation are licensed under the [MIT License](LICENSE).
 
-QuotaPulse names, logos, and branding assets are not granted for use as third-party product branding by this license.
+QuotaMew names, logos, and branding assets are not granted for use as third-party product branding by this license.

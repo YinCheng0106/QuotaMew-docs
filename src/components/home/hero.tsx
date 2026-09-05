@@ -75,7 +75,7 @@ function AppPreview({ lang }: { lang: string }) {
           </div>
 
           <span className="mx-auto pr-9 text-xs text-fd-muted-foreground">
-            QuotaPulse
+            QuotaMew
           </span>
         </div>
 
@@ -88,14 +88,14 @@ function AppPreview({ lang }: { lang: string }) {
 
               <p className="font-medium">
                 {isTraditionalChinese
-                  ? 'QuotaPulse App 截圖'
-                  : 'QuotaPulse App Screenshot'}
+                  ? 'QuotaMew App 截圖'
+                  : 'QuotaMew App Screenshot'}
               </p>
 
               <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
                 {isTraditionalChinese
-                  ? '之後會在這裡放入真實的 QuotaPulse macOS 介面截圖。'
-                  : 'A real screenshot of the QuotaPulse macOS interface will be placed here later.'}
+                  ? '之後會在這裡放入真實的 QuotaMew macOS 介面截圖。'
+                  : 'A real screenshot of the QuotaMew macOS interface will be placed here later.'}
               </p>
             </div>
           </div>

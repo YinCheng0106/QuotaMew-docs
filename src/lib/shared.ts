@@ -1,4 +1,4 @@
-export const appName = 'QuotaPulse';
+export const appName = 'QuotaMew';
 
 export const appDescription =
   'A lightweight native macOS menu bar app for monitoring AI coding usage and reset times.';
@@ -9,12 +9,12 @@ export const docsContentRoute = '/llms.mdx/docs';
 
 export const productGitConfig = {
   user: 'YinCheng0106',
-  repo: 'QuotaPulse',
+  repo: 'QuotaMew',
   branch: 'main',
 };
 
 export const docsGitConfig = {
   user: 'YinCheng0106',
-  repo: 'quotapulse-docs',
+  repo: 'quotamew-docs',
   branch: 'main',
 };

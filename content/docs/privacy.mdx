@@ -1,46 +1,46 @@
 ---
 title: Privacy
-description: Learn how QuotaPulse handles your data and provider information.
+description: Learn how QuotaMew handles your data and provider information.
 icon: LockKeyhole
 ---
 
-QuotaPulse is designed around local, privacy-first processing.
+QuotaMew is designed around local, privacy-first processing.
 
-It does not require a QuotaPulse account, backend service, analytics service, or cloud sync.
+It does not require a QuotaMew account, backend service, analytics service, or cloud sync.
 
 <Callout type="info" title="Local by default">
 
-QuotaPulse processes the usage information it needs locally on your Mac.
+QuotaMew processes the usage information it needs locally on your Mac.
 
-QuotaPulse does not intentionally upload your prompts, conversations, source code, coding history, authentication credentials, or provider session contents.
+QuotaMew does not intentionally upload your prompts, conversations, source code, coding history, authentication credentials, or provider session contents.
 
 </Callout>
 
-## What QuotaPulse accesses
+## What QuotaMew accesses
 
-QuotaPulse accesses only the provider information needed to display supported quota usage and reset information.
+QuotaMew accesses only the provider information needed to display supported quota usage and reset information.
 
 ### Codex
 
-For Codex, QuotaPulse locates a compatible Codex runtime installed on your Mac and communicates with its local app-server through standard input and output.
+For Codex, QuotaMew locates a compatible Codex runtime installed on your Mac and communicates with its local app-server through standard input and output.
 
-QuotaPulse requests the rate-limit information needed to display your usage.
+QuotaMew requests the rate-limit information needed to display your usage.
 
 Codex remains responsible for its own authentication and provider communication.
 
-QuotaPulse does not read or copy your Codex authentication file, scrape the interactive `/status` screen, or scan your Codex session history.
+QuotaMew does not read or copy your Codex authentication file, scrape the interactive `/status` screen, or scan your Codex session history.
 
 ### Claude Code
 
 Claude Code support is currently experimental and unverified.
 
-The implemented integration reads only a small, versioned snapshot designed for QuotaPulse.
+The implemented integration reads only a small, versioned snapshot designed for QuotaMew.
 
 It does not scan Claude transcripts, conversation history, authentication credentials, or internal usage caches.
 
-## What QuotaPulse does not intentionally collect
+## What QuotaMew does not intentionally collect
 
-QuotaPulse is designed not to collect or upload:
+QuotaMew is designed not to collect or upload:
 
 - Prompts or conversation contents
 - Source code
@@ -52,7 +52,7 @@ QuotaPulse is designed not to collect or upload:
 
 ## Local settings
 
-QuotaPulse stores application preferences locally using macOS `UserDefaults`.
+QuotaMew stores application preferences locally using macOS `UserDefaults`.
 
 These preferences can include:
 
@@ -64,15 +64,15 @@ These preferences can include:
 - Menu bar preferences
 - Onboarding state
 
-These settings are associated with the local QuotaPulse installation and are not synchronized through a QuotaPulse cloud service.
+These settings are associated with the local QuotaMew installation and are not synchronized through a QuotaMew cloud service.
 
 ## Diagnostics
 
-QuotaPulse includes a privacy-safe diagnostics report to help troubleshoot provider compatibility issues.
+QuotaMew includes a privacy-safe diagnostics report to help troubleshoot provider compatibility issues.
 
 The built-in diagnostics report contains an allowlisted set of information such as:
 
-- QuotaPulse version
+- QuotaMew version
 - macOS and system information
 - Provider state
 - Runtime availability
@@ -100,14 +100,14 @@ Do not attach raw provider logs, authentication files, session files, or broad s
 
 ## Network access
 
-QuotaPulse itself currently does not require a QuotaPulse backend, account service, analytics service, or cloud sync.
+QuotaMew itself currently does not require a QuotaMew backend, account service, analytics service, or cloud sync.
 
-When using Codex, QuotaPulse communicates with the locally installed Codex runtime. The runtime is responsible for its normal communication with the provider and for authentication.
+When using Codex, QuotaMew communicates with the locally installed Codex runtime. The runtime is responsible for its normal communication with the provider and for authentication.
 
-The privacy and network behavior of ChatGPT, Codex, Claude Code, macOS, and other software running on your Mac are governed by those products and are outside QuotaPulse's implementation boundary.
+The privacy and network behavior of ChatGPT, Codex, Claude Code, macOS, and other software running on your Mac are governed by those products and are outside QuotaMew's implementation boundary.
 
 ## Future features
 
-QuotaPulse may gain features in the future that require additional network access, such as retrieving publicly available reset information.
+QuotaMew may gain features in the future that require additional network access, such as retrieving publicly available reset information.
 
-If a future feature changes QuotaPulse's data or network behavior, this documentation will be updated to describe the new behavior before it is treated as part of the stable product.
+If a future feature changes QuotaMew's data or network behavior, this documentation will be updated to describe the new behavior before it is treated as part of the stable product.

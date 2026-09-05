@@ -11,7 +11,8 @@ import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/components/mdx';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { docsGitConfig } from '@/lib/shared';
+import { appName, docsGitConfig } from '@/lib/shared';
+import { absoluteUrl, localizedAlternates } from '@/lib/site-url';
 
 export default async function Page(
   props: PageProps<'/[lang]/docs/[[...slug]]'>
@@ -59,11 +60,31 @@ export async function generateMetadata(
 
   if (!page) notFound();
 
+  const canonicalUrl = absoluteUrl(page.url);
+  const ogImageUrl = absoluteUrl(getPageImageUrl(page).url);
+  const ogTitle = [page.data.title, appName].join(' | ');
+
   return {
     title: page.data.title,
     description: page.data.description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: localizedAlternates(page.url),
+    },
     openGraph: {
-      images: getPageImageUrl(page).url,
+      type: 'article',
+      url: canonicalUrl,
+      siteName: appName,
+      title: ogTitle,
+      description: page.data.description,
+      locale: params.lang === 'zh-TW' ? 'zh_TW' : 'en_US',
+      images: [ogImageUrl],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: page.data.description,
+      images: [ogImageUrl],
     },
   };
 }

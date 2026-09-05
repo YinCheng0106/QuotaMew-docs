@@ -1,9 +1,9 @@
 export const downloadContent = {
   en: {
     eyebrow: 'Download',
-    title: 'Get QuotaPulse for macOS.',
+    title: 'Get QuotaMew for macOS.',
     description:
-      'QuotaPulse is currently distributed as a beta macOS app. Public downloadable builds will be provided here when they are ready.',
+      'QuotaMew is currently distributed as a beta macOS app. Public downloadable builds will be provided here when they are ready.',
 
     status: {
       beta: 'Beta',
@@ -26,21 +26,21 @@ export const downloadContent = {
     security: {
       title: 'About the current Beta',
       description:
-        'Current beta builds are not signed and notarized with an Apple Developer ID. macOS may therefore show a security warning the first time you open QuotaPulse.',
+        'Current beta builds are not signed and notarized with an Apple Developer ID. macOS may therefore show a security warning the first time you open QuotaMew.',
       source:
-        'Only download QuotaPulse from this website or the official GitHub repository.',
+        'Only download QuotaMew from this website or the official GitHub repository.',
       action:
         'You do not need to disable Gatekeeper or other system-wide macOS security features.',
       firstLaunch: {
         eyebrow: 'First Launch',
         title: 'macOS may block the current beta the first time.',
         description:
-          'Because the current beta is not signed and notarized with an Apple Developer ID, macOS may require you to explicitly approve QuotaPulse before it can open.',
+          'Because the current beta is not signed and notarized with an Apple Developer ID, macOS may require you to explicitly approve QuotaMew before it can open.',
         steps: [
           {
-            title: 'Try to open QuotaPulse',
+            title: 'Try to open QuotaMew',
             description:
-              'Open QuotaPulse from the Applications folder. macOS may display a security warning and prevent it from launching.',
+              'Open QuotaMew from the Applications folder. macOS may display a security warning and prevent it from launching.',
           },
           {
             title: 'Open Privacy & Security',
@@ -50,12 +50,12 @@ export const downloadContent = {
           {
             title: 'Choose Open Anyway',
             description:
-              'Find the message about QuotaPulse in the Security section and choose Open Anyway.',
+              'Find the message about QuotaMew in the Security section and choose Open Anyway.',
           },
           {
             title: 'Confirm the launch',
             description:
-              'Confirm that you want to open QuotaPulse. macOS may ask for Touch ID or your password.',
+              'Confirm that you want to open QuotaMew. macOS may ask for Touch ID or your password.',
           },
         ],
         warning:
@@ -71,23 +71,25 @@ export const downloadContent = {
         {
           title: 'Download the DMG',
           description:
-            'Download the latest QuotaPulse disk image from the official release.',
+            'Download the latest QuotaMew disk image from the official release.',
         },
         {
-          title: 'Move QuotaPulse to Applications',
+          title: 'Move QuotaMew to Applications',
           description:
-            'Open the DMG and drag QuotaPulse into the Applications folder.',
+            'Open the DMG and drag QuotaMew into the Applications folder.',
         },
         {
-          title: 'Open QuotaPulse',
+          title: 'Open QuotaMew',
           description:
-            'Launch QuotaPulse from Applications. macOS may ask for additional approval for the current beta.',
+            'Launch QuotaMew from Applications. macOS may ask for additional approval for the current beta.',
         },
       ],
     },
 
     release: {
       title: 'Release information',
+      historicalNote:
+        'This beta was released under the previous QuotaPulse name; its published download URL remains unchanged.',
       version: 'Version',
       channel: 'Channel',
       compatibility: 'Compatibility',
@@ -102,9 +104,9 @@ export const downloadContent = {
 
   'zh-TW': {
     eyebrow: '下載',
-    title: '取得 macOS 版 QuotaPulse。',
+    title: '取得 macOS 版 QuotaMew。',
     description:
-      'QuotaPulse 目前以 macOS Beta 應用程式形式提供。當公開測試版本準備完成後，將會在這裡提供下載。',
+      'QuotaMew 目前以 macOS Beta 應用程式形式提供。當公開測試版本準備完成後，將會在這裡提供下載。',
 
     status: {
       beta: 'Beta',
@@ -127,21 +129,21 @@ export const downloadContent = {
     security: {
       title: '關於目前的 Beta 版本',
       description:
-        '目前的 Beta 尚未使用 Apple Developer ID 完成簽署與公證，因此第一次開啟 QuotaPulse 時，macOS 可能會顯示安全性警告。',
+        '目前的 Beta 尚未使用 Apple Developer ID 完成簽署與公證，因此第一次開啟 QuotaMew 時，macOS 可能會顯示安全性警告。',
       source:
-        '請只從本網站或 QuotaPulse 官方 GitHub Repository 下載 QuotaPulse。',
+        '請只從本網站或 QuotaMew 官方 GitHub Repository 下載 QuotaMew。',
       action:
         '你不需要停用 Gatekeeper 或其他 macOS 全域安全性功能。',
       firstLaunch: {
         eyebrow: '首次啟動',
         title: 'macOS 第一次可能會阻擋目前的 Beta 版本。',
         description:
-          '由於目前的 Beta 尚未使用 Apple Developer ID 完成簽署與公證，macOS 可能會要求你手動核准 QuotaPulse 後才能開啟。',
+          '由於目前的 Beta 尚未使用 Apple Developer ID 完成簽署與公證，macOS 可能會要求你手動核准 QuotaMew 後才能開啟。',
         steps: [
           {
-            title: '嘗試開啟 QuotaPulse',
+            title: '嘗試開啟 QuotaMew',
             description:
-              '從 Applications（應用程式）資料夾開啟 QuotaPulse。macOS 可能會顯示安全性警告並阻止 App 啟動。',
+              '從 Applications（應用程式）資料夾開啟 QuotaMew。macOS 可能會顯示安全性警告並阻止 App 啟動。',
           },
           {
             title: '開啟「隱私權與安全性」',
@@ -151,12 +153,12 @@ export const downloadContent = {
           {
             title: '選擇「仍要打開」',
             description:
-              '在安全性區段找到 QuotaPulse 的相關訊息，並選擇「仍要打開」（Open Anyway）。',
+              '在安全性區段找到 QuotaMew 的相關訊息，並選擇「仍要打開」（Open Anyway）。',
           },
           {
             title: '確認開啟',
             description:
-              '確認你要開啟 QuotaPulse。macOS 可能會要求使用 Touch ID 或密碼進行驗證。',
+              '確認你要開啟 QuotaMew。macOS 可能會要求使用 Touch ID 或密碼進行驗證。',
           },
         ],
         warning:
@@ -172,23 +174,25 @@ export const downloadContent = {
         {
           title: '下載 DMG',
           description:
-            '從 QuotaPulse 官方 Release 下載最新的磁碟映像檔。',
+            '從 QuotaMew 官方 Release 下載最新的磁碟映像檔。',
         },
         {
-          title: '將 QuotaPulse 移至 Applications',
+          title: '將 QuotaMew 移至 Applications',
           description:
-            '開啟 DMG，並將 QuotaPulse 拖曳到 Applications（應用程式）資料夾。',
+            '開啟 DMG，並將 QuotaMew 拖曳到 Applications（應用程式）資料夾。',
         },
         {
-          title: '開啟 QuotaPulse',
+          title: '開啟 QuotaMew',
           description:
-            '從 Applications 啟動 QuotaPulse。目前的 Beta 版本可能需要額外的 macOS 安全性核准。',
+            '從 Applications 啟動 QuotaMew。目前的 Beta 版本可能需要額外的 macOS 安全性核准。',
         },
       ],
     },
 
     release: {
       title: '版本資訊',
+      historicalNote:
+        '此 Beta 版本是以先前的 QuotaPulse 名稱發布；已公開的下載網址維持不變。',
       version: '版本',
       channel: '發布通道',
       compatibility: '相容性',

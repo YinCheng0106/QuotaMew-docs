@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "quotapulse-docs",
+      "name": "quotamew-docs",
       "dependencies": {
         "@fumadocs/language": "^0.2.4",
         "cnfast": "^0.1.0",

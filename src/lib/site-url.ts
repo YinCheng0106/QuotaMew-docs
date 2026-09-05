@@ -17,5 +17,25 @@ function getSiteOrigin() {
 export const siteOrigin = getSiteOrigin();
 
 export function absoluteUrl(pathname: string) {
-  return new URL(pathname, `${siteOrigin}/`).toString();
+  return new URL(pathname, siteOrigin + '/').toString();
+}
+
+export function localizedAlternates(pathname: string) {
+  const normalizedPath = pathname.startsWith('/')
+    ? pathname
+    : '/' + pathname;
+  const englishPath = normalizedPath.replace(
+    /^\/zh-TW(?=\/|$)/,
+    '',
+  ) || '/';
+
+  return {
+    en: absoluteUrl(englishPath),
+    'zh-TW': absoluteUrl(
+      englishPath === '/'
+        ? '/zh-TW'
+        : '/zh-TW' + englishPath,
+    ),
+    'x-default': absoluteUrl(englishPath),
+  };
 }

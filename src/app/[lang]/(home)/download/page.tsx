@@ -11,6 +11,7 @@ import {
 import { getDownloadContent } from '@/lib/download-content';
 import { localizePath } from '@/lib/i18n';
 import { releaseConfig } from '@/lib/release';
+import { absoluteUrl, localizedAlternates } from '@/lib/site-url';
 import {
   docsRoute,
   productGitConfig,
@@ -21,10 +22,34 @@ export async function generateMetadata({
 }: PageProps<'/[lang]/download'>): Promise<Metadata> {
   const { lang } = await params;
   const content = getDownloadContent(lang);
+  const canonicalPath = localizePath(lang, '/download');
+  const canonicalUrl = absoluteUrl(canonicalPath);
+  const ogImageUrl = absoluteUrl(
+    localizePath(lang, '/og/home'),
+  );
 
   return {
     title: content.eyebrow,
     description: content.description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: localizedAlternates(canonicalPath),
+    },
+    openGraph: {
+      type: 'website',
+      url: canonicalUrl,
+      siteName: 'QuotaMew',
+      title: content.title,
+      description: content.description,
+      locale: lang === 'zh-TW' ? 'zh_TW' : 'en_US',
+      images: [ogImageUrl],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: content.title,
+      description: content.description,
+      images: [ogImageUrl],
+    },
   };
 }
 
@@ -193,6 +218,10 @@ function ReleaseOverview({
           )}
         />
       </dl>
+
+      <p className="mt-6 text-sm leading-6 text-fd-muted-foreground">
+        {content.release.historicalNote}
+      </p>
     </div>
   );
 }

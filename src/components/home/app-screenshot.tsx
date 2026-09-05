@@ -12,11 +12,11 @@ export function AppScreenshot({
       <div className="relative overflow-hidden rounded-2xl border bg-fd-card p-2 shadow-2xl shadow-black/5 sm:p-3">
         <div className="overflow-hidden rounded-xl border">
           <Image
-            src="/images/quotapulse-app.webp"
+            src="/images/quotamew-app.webp"
             alt={
               isTraditionalChinese
-                ? 'QuotaPulse macOS 選單列應用程式介面'
-                : 'QuotaPulse macOS menu bar app interface'
+                ? 'QuotaMew macOS 選單列應用程式介面'
+                : 'QuotaMew macOS menu bar app interface'
             }
             width={1600}
             height={1000}
@@ -28,8 +28,8 @@ export function AppScreenshot({
 
       <p className="mt-4 text-center text-xs text-fd-muted-foreground">
         {isTraditionalChinese
-          ? 'QuotaPulse 原生 macOS 選單列介面'
-          : 'QuotaPulse native macOS menu bar interface'}
+          ? 'QuotaMew 原生 macOS 選單列介面'
+          : 'QuotaMew native macOS menu bar interface'}
       </p>
     </div>
   );
