@@ -26,9 +26,9 @@ export const releaseConfig: ReleaseConfig = {
 
   availability: 'available',
 
-  version: 'v0.2.0-beta.1',
-  downloadUrl: 'https://github.com/YinCheng0106/QuotaPulse/releases/download/v0.2.0-beta.1/QuotaPulse-v0.2.0-beta.1.dmg',
-  sha256: '96792f49495741fedacb6a519794dc10dba61708ae45fb052a9882d3a15e01fe',
+  version: 'v0.2.0-beta.2',
+  downloadUrl: 'https://github.com/YinCheng0106/QuotaMew/releases/download/v0.2.0-beta.2/QuotaMew-v0.2.0-beta.2.dmg',
+  sha256: 'c3b40ab35f095479382248641358258c169bc84af21990a043d8095e504a3642',
 
   minimumMacOS: '14',
 
