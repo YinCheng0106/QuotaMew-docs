@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { zhTW } from '@fumadocs/language/zh-tw';
 import { uiTranslations } from 'fumadocs-ui/i18n';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
@@ -24,7 +25,19 @@ export function baseOptions(locale: string): BaseLayoutProps {
   return {
     i18n: true,
     nav: {
-      title: appName,
+      title: (
+        <span className="inline-flex items-center gap-2.5">
+          <Image
+            src="/branding/quotamew-icon.png"
+            alt=""
+            width={26}
+            height={26}
+            className="size-6.5 rounded-md"
+            priority
+          />
+          <span>{appName}</span>
+        </span>
+      ),
       url: localizePath(locale, '/'),
     },
     links: [
