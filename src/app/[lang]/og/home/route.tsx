@@ -155,6 +155,8 @@ export async function GET(
         <div
           style={{
             display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
             padding: '12px 20px',
             borderRadius: '999px',
             background: '#ffffff',
@@ -162,9 +164,25 @@ export async function GET(
             fontWeight: 600,
           }}
         >
-          {isTraditionalChinese
-            ? '下載 macOS 版本 →'
-            : 'Download for macOS →'}
+          <span>
+            {isTraditionalChinese
+              ? '下載 macOS 版本'
+              : 'Download for macOS'}
+          </span>
+        
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#111111"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
         </div>
       </div>
     </div>,
