@@ -1,9 +1,9 @@
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { getHomeContent } from '@/lib/home-content';
 import { i18n } from '@/lib/i18n';
-import { appName } from '@/lib/shared';
 import { googleFonts } from 'takumi-js/helpers';
 import { ImageResponse } from 'takumi-js/response';
-import { generate as DefaultImage } from 'fumadocs-ui/og/takumi';
 
 export const revalidate = false;
 
@@ -14,22 +14,148 @@ export async function GET(
   const { lang } = await params;
   const content = getHomeContent(lang);
 
-  const fonts =
-    lang === 'zh-TW'
-      ? googleFonts([
-          {
-            name: 'Noto Sans TC',
-            weight: '100..900',
-          },
-        ])
-      : undefined;
+  const isTraditionalChinese = lang === 'zh-TW';
+
+  const fonts = isTraditionalChinese
+    ? googleFonts([
+        {
+          name: 'Noto Sans TC',
+          weight: '100..900',
+        },
+      ])
+    : undefined;
+
+  const logoPath = path.join(
+    process.cwd(),
+    'public',
+    'branding',
+    'quotamew-icon.png',
+  );
+
+  const logoBuffer = await readFile(logoPath);
+  const logoDataUrl = `data:image/png;base64,${logoBuffer.toString('base64')}`;
+
+  const title = isTraditionalChinese
+    ? '一眼掌握你的 AI 程式開發額度'
+    : 'Your AI coding quota, at a glance.';
+
+  const description = isTraditionalChinese
+    ? '原生 macOS 選單列工具'
+    : 'Native macOS menu bar utility';
 
   return new ImageResponse(
-    <DefaultImage
-      title={content.hero.title}
-      description={content.hero.description}
-      site={appName}
-    />,
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: '64px 72px',
+        background:
+          'linear-gradient(135deg, #0b0b0d 0%, #151518 55%, #0d0d10 100%)',
+        color: '#ffffff',
+        fontFamily: isTraditionalChinese
+          ? 'Noto Sans TC'
+          : 'sans-serif',
+      }}
+    >
+      {/* Top */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '22px',
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logoDataUrl}
+          alt="QuotaMew logo"
+          width={96}
+          height={96}
+          style={{
+            borderRadius: '22px',
+          }}
+        />
+
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div
+            style={{
+              fontSize: '42px',
+              fontWeight: 700,
+              letterSpacing: '-1px',
+            }}
+          >
+            QuotaMew
+          </div>
+
+          <div
+            style={{
+              marginTop: '4px',
+              fontSize: '20px',
+              color: '#a1a1aa',
+            }}
+          >
+            quotamew.yincheng.app
+          </div>
+        </div>
+      </div>
+
+      {/* Main */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: '980px',
+        }}
+      >
+        <div
+          style={{
+            fontSize: isTraditionalChinese ? '58px' : '64px',
+            fontWeight: 700,
+            lineHeight: 1.12,
+            letterSpacing: '-2px',
+          }}
+        >
+          {title}
+        </div>
+
+        <div
+          style={{
+            marginTop: '24px',
+            fontSize: '25px',
+            color: '#a1a1aa',
+          }}
+        >
+          {description}
+        </div>
+      </div>
+
+      {/* Bottom */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          fontSize: '18px',
+          color: '#71717a',
+        }}
+      >
+        <span>
+          {isTraditionalChinese
+            ? 'AI 程式開發用量 · 額度重置追蹤'
+            : 'AI coding usage · Reset tracking'}
+        </span>
+
+        <span>macOS</span>
+      </div>
+    </div>,
     {
       width: 1200,
       height: 630,

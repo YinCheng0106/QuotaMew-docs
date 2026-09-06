@@ -23,6 +23,10 @@ export async function generateMetadata({
   const canonicalPath = localizePath(lang, '/');
   const canonicalUrl = absoluteUrl(canonicalPath);
 
+  const metaDescription = isTraditionalChinese
+    ? '輕量的原生 macOS 選單列 App，讓你快速查看 AI 程式開發工具的使用量、額度狀態與重置時間。'
+    : 'A lightweight native macOS menu bar app for monitoring AI coding usage, quota status, and reset times.';
+
   const ogTitle = isTraditionalChinese
     ? 'QuotaMew — 一眼掌握你的 AI 程式開發額度'
     : 'QuotaMew — Your AI coding quota, at a glance.';
@@ -35,7 +39,10 @@ export async function generateMetadata({
     title: {
       absolute: 'QuotaMew',
     },
-    description: content.hero.description,
+
+    applicationName: 'QuotaMew',
+    
+    description: metaDescription,
 
     alternates: {
       canonical: canonicalUrl,
@@ -47,7 +54,7 @@ export async function generateMetadata({
       url: canonicalUrl,
       siteName: 'QuotaMew',
       title: ogTitle,
-      description: content.hero.description,
+      description: metaDescription,
       locale: isTraditionalChinese ? 'zh_TW' : 'en_US',
       alternateLocale: [
         isTraditionalChinese ? 'en_US' : 'zh_TW',
@@ -65,7 +72,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title: ogTitle,
-      description: content.hero.description,
+      description: metaDescription,
       images: [ogImageUrl],
     },
 
