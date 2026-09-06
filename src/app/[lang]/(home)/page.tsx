@@ -16,7 +16,6 @@ export async function generateMetadata({
   params,
 }: PageProps<'/[lang]'>): Promise<Metadata> {
   const { lang } = await params;
-  const content = getHomeContent(lang);
 
   const isTraditionalChinese = lang === 'zh-TW';
 
@@ -40,6 +39,10 @@ export async function generateMetadata({
   );
 
   return {
+    icons: {
+      icon: '/favicon.png',
+    },
+    
     title: {
       absolute: pageTitle,
     },
