@@ -144,16 +144,28 @@ export async function GET(
           justifyContent: 'space-between',
           alignItems: 'center',
           fontSize: '18px',
-          color: '#71717a',
         }}
       >
-        <span>
+        <span style={{ color: '#71717a' }}>
           {isTraditionalChinese
             ? 'AI 程式開發用量 · 額度重置追蹤'
             : 'AI coding usage · Reset tracking'}
         </span>
 
-        <span>macOS</span>
+        <div
+          style={{
+            display: 'flex',
+            padding: '12px 20px',
+            borderRadius: '999px',
+            background: '#ffffff',
+            color: '#111111',
+            fontWeight: 600,
+          }}
+        >
+          {isTraditionalChinese
+            ? '下載 macOS 版本 →'
+            : 'Download for macOS →'}
+        </div>
       </div>
     </div>,
     {

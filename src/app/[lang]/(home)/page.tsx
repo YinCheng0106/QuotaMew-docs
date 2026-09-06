@@ -23,9 +23,13 @@ export async function generateMetadata({
   const canonicalPath = localizePath(lang, '/');
   const canonicalUrl = absoluteUrl(canonicalPath);
 
+  const pageTitle = isTraditionalChinese
+    ? 'QuotaMew — macOS AI 程式開發額度與重置時間監控工具'
+    : 'QuotaMew — AI Coding Quota & Reset Monitor for macOS';
+
   const metaDescription = isTraditionalChinese
-    ? '輕量的原生 macOS 選單列 App，讓你快速查看 AI 程式開發工具的使用量、額度狀態與重置時間。'
-    : 'A lightweight native macOS menu bar app for monitoring AI coding usage, quota status, and reset times.';
+    ? 'QuotaMew 是一款輕量的原生 macOS 選單列 App，讓你快速查看 AI 程式開發工具的使用量、剩餘額度與重置時間，並透過本機通知掌握重要的額度重置資訊。'
+    : 'QuotaMew is a lightweight native macOS menu bar app for monitoring AI coding usage, remaining quota, reset times, and local reset notifications.';
 
   const ogTitle = isTraditionalChinese
     ? 'QuotaMew — 一眼掌握你的 AI 程式開發額度'
@@ -37,7 +41,7 @@ export async function generateMetadata({
 
   return {
     title: {
-      absolute: 'QuotaMew',
+      absolute: pageTitle,
     },
 
     applicationName: 'QuotaMew',
