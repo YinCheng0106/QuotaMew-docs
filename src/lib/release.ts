@@ -26,9 +26,9 @@ export const releaseConfig: ReleaseConfig = {
 
   availability: 'available',
 
-  version: 'v0.2.0-beta.2',
-  downloadUrl: 'https://github.com/YinCheng0106/QuotaMew/releases/download/v0.2.0-beta.2/QuotaMew-v0.2.0-beta.2.dmg',
-  sha256: 'c3b40ab35f095479382248641358258c169bc84af21990a043d8095e504a3642',
+  version: 'v0.2.0-beta.3',
+  downloadUrl: 'https://github.com/YinCheng0106/QuotaMew/releases/download/v0.2.0-beta.3/QuotaMew-v0.2.0-beta.3.dmg',
+  sha256: '821ca9ab13da169e612da3d922176bfaf79400db05e5f703ed0933fe9e003b5a',
 
   minimumMacOS: '14',
 
