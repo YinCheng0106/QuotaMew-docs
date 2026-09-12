@@ -64,7 +64,7 @@ function AppPreview({ lang }: { lang: string }) {
   const isTraditionalChinese = lang === 'zh-TW';
 
   return (
-    <div className="mt-16 w-full max-w-4xl sm:mt-20">
+    <div className="mt-16 w-full max-w-xl sm:mt-20">
       <div className="overflow-hidden rounded-2xl border bg-fd-card p-2 shadow-2xl shadow-black/5 sm:p-3">
         <Image
           src="/images/screenshots/quotamew-dashboard.png"
