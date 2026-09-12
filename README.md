@@ -116,7 +116,7 @@ The documentation source is maintained in the [quotamew-docs repository](https:/
 
 Download information is managed centrally by the website's release configuration.
 
-The currently listed `v0.2.0-beta.1` download was released under the previous QuotaPulse name; its published artifact URL is intentionally preserved.
+The current public release is **v0.2.0-beta.3**. Download `QuotaMew-v0.2.0-beta.3.dmg` from the [Beta 3 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0-beta.3). The DMG is not Developer ID signed or notarized.
 
 When publishing a new QuotaMew release, the website should be updated with:
 

@@ -123,7 +123,7 @@ NEXT_PUBLIC_SITE_URL=https://quotamew.yincheng.app
 
 QuotaMew 的下載資訊由網站中的 release configuration 統一管理。
 
-目前列出的 `v0.2.0-beta.1` 是以先前的 QuotaPulse 名稱發布；已公開的 artifact 下載網址因此刻意保留不變。
+目前公開版本為 **v0.2.0-beta.3**。請從 [Beta 3 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0-beta.3) 下載 `QuotaMew-v0.2.0-beta.3.dmg`。此 DMG 尚未使用 Developer ID 簽署或公證。
 
 發布新的 QuotaMew 版本時，網站應同步更新：
 

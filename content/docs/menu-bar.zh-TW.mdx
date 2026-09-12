@@ -1,0 +1,25 @@
+---
+title: 選單列與設定
+description: 了解 Beta 3 如何呈現額度資訊與使用偏好。
+icon: SlidersHorizontal
+---
+
+QuotaMew 會在 macOS 選單列中執行。點擊 status item 可開啟 Dashboard；使用原生右鍵選單可以執行「**立即重新整理**」、「**設定…**」與「**退出 QuotaMew**」。
+
+## 選單列顯示
+
+在 **Single** 模式中，可以選擇顯示一個額度：**5 小時**、**每週**或 **Luna Reserve**。在 **Overview** 模式中，QuotaMew 可以同時顯示兩個一般額度視窗，例如 `5H 86% · W 71%`。
+
+- `5H` — 5 小時額度
+- `W` — 每週額度
+- `R` — Luna Reserve
+
+「**剩餘**」與「**已使用**」是呈現模式。例如剩餘可能顯示 `5H 86% · W 71%`，已使用可能顯示 `5H 14% · W 29%`。切換模式不會改變 Provider 的額度資料。
+
+Luna Reserve 是從 Codex 資料觀察到的額外額度 bucket，由 QuotaMew 以保守方式呈現。你可以在 Single 模式明確選擇它；Overview 只有在 QuotaMew 的保守顯示規則允許時才會顯示。QuotaMew 不會控制或啟用 Reserve，也不保證請求目前正經由 Reserve 路由。
+
+## Onboarding 與設定
+
+首次啟動 Onboarding 會簡要介紹 Provider 狀態、隱私、額度呈現、Provider 偏好、登入時啟動與選用通知。它不是建立帳號或安裝 Provider 的設定精靈；你可以從「設定」重新播放 Onboarding。
+
+只有在你明確選擇通知相關操作後，QuotaMew 才會要求通知權限。通知是選用功能，並由 macOS 在本機傳遞。
