@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Download } from 'lucide-react';
-import { AppScreenshot } from './app-screenshot';
 
 type HeroContent = {
   badge: string;
@@ -54,7 +54,6 @@ export function Hero({
           </Link>
         </div>
 
-        {/*<AppScreenshot lang={lang} />*/}
         <AppPreview lang={lang} />
       </div>
     </section>
@@ -66,106 +65,25 @@ function AppPreview({ lang }: { lang: string }) {
 
   return (
     <div className="mt-16 w-full max-w-4xl sm:mt-20">
-      <div className="overflow-hidden rounded-2xl border bg-fd-card shadow-2xl shadow-black/5">
-        <div className="flex h-11 items-center border-b px-4">
-          <div className="flex gap-2">
-            <div className="size-3 rounded-full bg-fd-muted-foreground/20" />
-            <div className="size-3 rounded-full bg-fd-muted-foreground/20" />
-            <div className="size-3 rounded-full bg-fd-muted-foreground/20" />
-          </div>
-
-          <span className="mx-auto pr-9 text-xs text-fd-muted-foreground">
-            QuotaMew
-          </span>
-        </div>
-
-        <div className="grid gap-6 p-6 text-left sm:p-8 lg:grid-cols-[1fr_280px]">
-          <div className="flex min-h-72 items-center justify-center rounded-xl border border-dashed bg-fd-secondary/30 p-8">
-            <div className="max-w-sm text-center">
-              <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-xl border bg-fd-background font-semibold">
-                Q
-              </div>
-
-              <p className="font-medium">
-                {isTraditionalChinese
-                  ? 'QuotaMew App 截圖'
-                  : 'QuotaMew App Screenshot'}
-              </p>
-
-              <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
-                {isTraditionalChinese
-                  ? '之後會在這裡放入真實的 QuotaMew macOS 介面截圖。'
-                  : 'A real screenshot of the QuotaMew macOS interface will be placed here later.'}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-center gap-3">
-            <PreviewRow
-              title="Codex"
-              value="72%"
-              subtitle={
-                isTraditionalChinese
-                  ? '剩餘額度'
-                  : 'remaining'
-              }
-            />
-
-            <PreviewRow
-              title={
-                isTraditionalChinese
-                  ? '下次重置'
-                  : 'Next reset'
-              }
-              value="2h 41m"
-              subtitle={
-                isTraditionalChinese
-                  ? '倒數'
-                  : 'countdown'
-              }
-            />
-
-            <PreviewRow
-              title="Claude Code"
-              value="—"
-              subtitle="Experimental"
-            />
-          </div>
-        </div>
+      <div className="overflow-hidden rounded-2xl border bg-fd-card p-2 shadow-2xl shadow-black/5 sm:p-3">
+        <Image
+          src="/images/screenshots/quotamew-dashboard.png"
+          alt={
+            isTraditionalChinese
+              ? 'QuotaMew macOS 選單列 Dashboard，顯示 Codex 五小時、每週與 Luna Reserve 額度'
+              : 'QuotaMew macOS menu bar dashboard showing Codex 5-hour, Weekly, and Luna Reserve quota'
+          }
+          width={920}
+          height={1114}
+          priority
+          className="h-auto w-full rounded-xl"
+        />
       </div>
 
       <p className="mt-4 text-center text-xs text-fd-muted-foreground">
         {isTraditionalChinese
-          ? '目前為版面預覽，之後會替換成實際 App 截圖。'
-          : 'Layout preview — this will be replaced with an actual app screenshot.'}
-      </p>
-    </div>
-  );
-}
-
-function PreviewRow({
-  title,
-  value,
-  subtitle,
-}: {
-  title: string;
-  value: string;
-  subtitle: string;
-}) {
-  return (
-    <div className="rounded-xl border bg-fd-background p-4">
-      <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-medium">
-          {title}
-        </span>
-
-        <span className="font-mono text-sm font-semibold">
-          {value}
-        </span>
-      </div>
-
-      <p className="mt-1 text-xs text-fd-muted-foreground">
-        {subtitle}
+          ? 'QuotaMew 原生 macOS 選單列 Dashboard'
+          : 'QuotaMew native macOS menu bar dashboard'}
       </p>
     </div>
   );
