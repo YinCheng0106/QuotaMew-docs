@@ -81,7 +81,7 @@ export default async function DownloadPage({
         <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-20 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border bg-fd-secondary/50 px-3 py-1 text-sm text-fd-muted-foreground">
-              <span>{content.status.beta}</span>
+              <span>{content.status.releaseCandidate}</span>
 
               <span aria-hidden="true">·</span>
 
@@ -189,7 +189,13 @@ function ReleaseOverview({
 
         <ReleaseItem
           label={content.release.channel}
-          value="Beta"
+          value={
+            releaseConfig.channel === 'rc'
+              ? content.status.releaseCandidate
+              : releaseConfig.channel === 'stable'
+                ? content.status.stable
+                : content.status.beta
+          }
         />
 
         <ReleaseItem

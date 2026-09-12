@@ -4,6 +4,7 @@ export type ReleaseAvailability =
 
 export type ReleaseChannel =
   | 'beta'
+  | 'rc'
   | 'stable';
 
 interface ReleaseConfig {
@@ -22,13 +23,13 @@ interface ReleaseConfig {
 }
 
 export const releaseConfig: ReleaseConfig = {
-  channel: 'beta',
+  channel: 'rc',
 
   availability: 'available',
 
-  version: 'v0.2.0-beta.3',
-  downloadUrl: 'https://github.com/YinCheng0106/QuotaMew/releases/download/v0.2.0-beta.3/QuotaMew-v0.2.0-beta.3.dmg',
-  sha256: '821ca9ab13da169e612da3d922176bfaf79400db05e5f703ed0933fe9e003b5a',
+  version: 'v0.2.0-rc.1',
+  downloadUrl: 'https://github.com/YinCheng0106/QuotaMew/releases/download/v0.2.0-rc.1/QuotaMew-v0.2.0-rc.1.dmg',
+  sha256: 'abd91c8c845dc0b6b75f054927602e555d1b2d9b2ba4b3010a44afe8ac85f7c7',
 
   minimumMacOS: '14',
 

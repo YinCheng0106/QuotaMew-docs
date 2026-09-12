@@ -3,10 +3,12 @@ export const downloadContent = {
     eyebrow: 'Download',
     title: 'Get QuotaMew for macOS.',
     description:
-      'QuotaMew v0.2.0-beta.3 is the current public beta for macOS. Download the verified Beta 3 DMG below.',
+      'QuotaMew v0.2.0 RC.1 is the current Release Candidate for macOS. Download the verified RC.1 DMG below.',
 
     status: {
       beta: 'Beta',
+      releaseCandidate: 'Release Candidate',
+      stable: 'Stable',
       comingSoon: 'Public download unavailable',
       available: 'Available now',
     },
@@ -24,18 +26,18 @@ export const downloadContent = {
     },
 
     security: {
-      title: 'About the current Beta',
+      title: 'About the current Release Candidate',
       description:
-        'The current beta is Apple Development signed, but it is not Developer ID signed or notarized for public distribution. macOS may therefore show a security warning the first time you open QuotaMew.',
+        'The current Release Candidate is Apple Development signed, but it is not Developer ID signed or notarized for public distribution. macOS may therefore show a security warning the first time you open QuotaMew.',
       source:
         'Only download QuotaMew from this website or the official GitHub repository.',
       action:
         'You do not need to disable Gatekeeper or other system-wide macOS security features.',
       firstLaunch: {
         eyebrow: 'First Launch',
-        title: 'macOS may block the current beta the first time.',
+        title: 'macOS may block the current Release Candidate the first time.',
         description:
-          'Because the current beta is not Developer ID signed or notarized for public distribution, macOS may require you to explicitly approve QuotaMew before it can open.',
+          'Because the current Release Candidate is not Developer ID signed or notarized for public distribution, macOS may require you to explicitly approve QuotaMew before it can open.',
         steps: [
           {
             title: 'Try to open QuotaMew',
@@ -81,7 +83,7 @@ export const downloadContent = {
         {
           title: 'Open QuotaMew',
           description:
-            'Launch QuotaMew from Applications. macOS may ask for additional approval for the current beta.',
+            'Launch QuotaMew from Applications. macOS may ask for additional approval for the current Release Candidate.',
         },
       ],
     },
@@ -89,7 +91,7 @@ export const downloadContent = {
     release: {
       title: 'Release information',
       historicalNote:
-        'The current public beta is v0.2.0-beta.3. The DMG is not Developer ID signed or notarized; see the first-launch guidance before opening it.',
+        'The current public release is v0.2.0 RC.1, a Release Candidate. The DMG is Apple Development signed but not Developer ID signed or notarized; see the first-launch guidance before opening it.',
       version: 'Version',
       channel: 'Channel',
       compatibility: 'Compatibility',
@@ -106,10 +108,12 @@ export const downloadContent = {
     eyebrow: '下載',
     title: '取得 macOS 版 QuotaMew。',
     description:
-      'QuotaMew v0.2.0-beta.3 是目前公開提供的 macOS Beta，請從下方下載已驗證的 Beta 3 DMG。',
+      'QuotaMew v0.2.0 RC.1 是目前公開提供的 macOS Release Candidate，請從下方下載已驗證的 RC.1 DMG。',
 
     status: {
       beta: 'Beta',
+      releaseCandidate: 'Release Candidate',
+      stable: '穩定版',
       comingSoon: '目前無法下載',
       available: '目前可下載',
     },
@@ -127,18 +131,18 @@ export const downloadContent = {
     },
 
     security: {
-      title: '關於目前的 Beta 版本',
+      title: '關於目前的 Release Candidate',
       description:
-        '目前 Beta 使用 Apple Development 簽署，但尚未使用 Developer ID 簽署或完成公開散布所需的公證，因此第一次開啟 QuotaMew 時，macOS 可能會顯示安全性警告。',
+        '目前 Release Candidate 使用 Apple Development 簽署，但尚未使用 Developer ID 簽署或完成公開散布所需的公證，因此第一次開啟 QuotaMew 時，macOS 可能會顯示安全性警告。',
       source:
         '請只從本網站或 QuotaMew 官方 GitHub Repository 下載 QuotaMew。',
       action:
         '你不需要停用 Gatekeeper 或其他 macOS 全域安全性功能。',
       firstLaunch: {
         eyebrow: '首次啟動',
-        title: 'macOS 第一次可能會阻擋目前的 Beta 版本。',
+        title: 'macOS 第一次可能會阻擋目前的 Release Candidate。',
         description:
-          '由於目前 Beta 尚未使用 Developer ID 簽署或完成公開散布所需的公證，macOS 可能會要求你手動核准 QuotaMew 後才能開啟。',
+          '由於目前 Release Candidate 尚未使用 Developer ID 簽署或完成公開散布所需的公證，macOS 可能會要求你手動核准 QuotaMew 後才能開啟。',
         steps: [
           {
             title: '嘗試開啟 QuotaMew',
@@ -184,7 +188,7 @@ export const downloadContent = {
         {
           title: '開啟 QuotaMew',
           description:
-            '從 Applications 啟動 QuotaMew。目前的 Beta 版本可能需要額外的 macOS 安全性核准。',
+            '從 Applications 啟動 QuotaMew。目前的 Release Candidate 可能需要額外的 macOS 安全性核准。',
         },
       ],
     },
@@ -192,7 +196,7 @@ export const downloadContent = {
     release: {
       title: '版本資訊',
       historicalNote:
-        '目前公開 Beta 為 v0.2.0-beta.3。DMG 尚未使用 Developer ID 簽署或公證；開啟前請先閱讀首次啟動說明。',
+        '目前公開版本為 v0.2.0 RC.1 Release Candidate。DMG 使用 Apple Development 簽署，但尚未使用 Developer ID 簽署或公證；開啟前請先閱讀首次啟動說明。',
       version: '版本',
       channel: '發布通道',
       compatibility: '相容性',

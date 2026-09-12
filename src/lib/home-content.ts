@@ -2,6 +2,7 @@ export const homeContent = {
   en: {
     hero: {
       badge: 'Native macOS menu bar app',
+      release: 'QuotaMew v0.2.0 RC.1 · Release Candidate',
       title: 'Your AI coding quota, at a glance.',
       description:
         'A lightweight native macOS menu bar app for monitoring AI coding usage and reset times.',
@@ -86,6 +87,7 @@ export const homeContent = {
   'zh-TW': {
     hero: {
       badge: '原生 macOS 選單列應用程式',
+      release: 'QuotaMew v0.2.0 RC.1 · Release Candidate',
       title: '一眼掌握你的 AI 程式開發額度。',
       description:
         '輕量的原生 macOS 選單列應用程式，讓你快速查看 AI 程式開發工具的使用量與重置時間。',

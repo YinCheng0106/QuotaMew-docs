@@ -116,7 +116,7 @@ The documentation source is maintained in the [quotamew-docs repository](https:/
 
 Download information is managed centrally by the website's release configuration.
 
-The current public release is **v0.2.0-beta.3**. Download `QuotaMew-v0.2.0-beta.3.dmg` from the [Beta 3 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0-beta.3). The DMG is not Developer ID signed or notarized.
+The current public release is **QuotaMew v0.2.0 RC.1**, a Release Candidate and pre-release before stable v0.2.0. Download `QuotaMew-v0.2.0-rc.1.dmg` from the [v0.2.0 RC.1 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0-rc.1). The DMG is Apple Development signed, but not Developer ID signed or notarized.
 
 When publishing a new QuotaMew release, the website should be updated with:
 

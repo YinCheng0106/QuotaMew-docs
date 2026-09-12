@@ -4,6 +4,7 @@ import { ArrowRight, Download } from 'lucide-react';
 
 type HeroContent = {
   badge: string;
+  release: string;
   title: string;
   description: string;
   download: string;
@@ -27,6 +28,10 @@ export function Hero({
         <div className="mb-6 rounded-full border bg-fd-secondary/50 px-3 py-1 text-sm text-fd-muted-foreground">
           {content.badge}
         </div>
+
+        <p className="-mt-2 mb-6 text-sm font-medium text-fd-muted-foreground">
+          {content.release}
+        </p>
 
         <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
           {content.title}
