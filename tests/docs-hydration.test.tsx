@@ -1,12 +1,18 @@
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { PathnameContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
+import { createRequire } from 'node:module';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { NextProvider } from 'fumadocs-core/framework/next';
 import { DocsPage, DocsTitle } from 'fumadocs-ui/layouts/docs/page';
 import { DocsPathnameProvider } from '../src/components/docs-pathname-provider';
 import { getPublicPathname } from '../src/lib/i18n';
+
+// Match Next.js navigation's CommonJS context resolution after its server
+// testing helpers install the shared-runtime require hook.
+const { PathnameContext } = createRequire(import.meta.url)(
+  'next/dist/shared/lib/hooks-client-context.shared-runtime',
+) as typeof import('next/dist/shared/lib/hooks-client-context.shared-runtime');
 
 describe('documentation hydration across default-locale rewrites', () => {
   test('only the complete default-locale segment is removed', () => {
