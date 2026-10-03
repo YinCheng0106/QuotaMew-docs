@@ -1,110 +1,97 @@
 ---
 title: Troubleshooting
-description: Find solutions to common QuotaMew problems.
+description: Safe checks for launch problems, missing Codex quota, stale readings, notifications and menu-bar settings.
 icon: Wrench
 ---
 
-If QuotaMew is not working as expected, find the issue that most closely matches what you are experiencing and follow the suggested steps.
+Find the symptom below. Check the current [Stable download](/download) and, after installing or updating, open QuotaMew from Applications. You do not need to delete settings, runtime files or authentication data.
 
-<Callout type="info" title="Before you start">
+## QuotaMew does not appear
 
-Make sure you are using the latest available version of QuotaMew.
+**Symptom and likely causes:** There is no Dock window or visible menu-bar item. QuotaMew is a menu-bar app; its item may be disabled or hidden by limited space or macOS visibility controls.
 
-If you recently installed or updated QuotaMew, quitting and reopening the app is also a good first step.
+**Safe checks:** Look in the menu bar, including any overflow manager you use. Open QuotaMew from Applications to access its available recovery/settings UI. In **Settings → General**, check **Show Menu Bar Item**. If macOS requires visibility approval, follow the app's message.
 
-</Callout>
+**Next action:** If it still does not appear, quit the running copy through its available menu/UI and reopen it. Report the app and macOS versions if it persists. Do not run multiple downloaded copies.
 
-## QuotaMew cannot be opened
+## App cannot be opened
 
-**Symptom**
+**Symptom and likely cause:** macOS blocks a newly installed or updated copy. Current distribution signing may require individual app approval.
 
-macOS prevents QuotaMew from opening after you install or update the app.
+**Safe checks:** Confirm the download came from this site or the official GitHub Release, and that you moved it to Applications. Follow the [First Launch guide](./first-launch.mdx), including **System Settings → Privacy & Security → Open Anyway** only when you trust the source.
 
-**Try this**
+**Next action:** If the message says the app will damage your computer or has been modified, stop and check the download source instead of bypassing it. For other persistent launch failures, report the exact non-sensitive message and version. Keep system security protections enabled.
 
-If macOS displays a security warning, follow the [First Launch guide](./first-launch.mdx).
+## No Codex quota is shown
 
-<StableDistribution locale="en" /> macOS may require additional approval before allowing QuotaMew to run.
+**Symptom and likely causes:** Codex is missing, disabled, not installed, or not configured. The local runtime may be missing or undiscoverable, or Codex may not be signed in.
 
-**Still not working?**
+**Safe checks:** Follow [Codex prerequisites](./providers.mdx#codex-prerequisites). Enable **Codex** in **Settings → Providers**, confirm the coding tool can sign in on its own, and select **Refresh Now** from QuotaMew's right-click menu. A browser session or terminal alias alone is not a local runtime.
 
-Make sure QuotaMew was moved to the **Applications** folder and try opening it again from there.
+**Next action:** Check **Settings → General → Diagnostics** for runtime and connection state. Copy the built-in report if you need help; do not copy credentials or raw runtime output.
 
-## QuotaMew does not appear in the menu bar
+## Quota appears unavailable
 
-**Symptom**
+**Symptom and likely causes:** A provider card shows unavailable/failed, or a quota displays a dash. The runtime response, authentication mode or quota window may not be supported. A missing quota is not zero remaining.
 
-QuotaMew appears to be running, but its icon is not visible in the macOS menu bar.
+**Safe checks:** Read the provider status and Diagnostics, confirm Codex itself works, and refresh once. If only Luna Reserve is missing, it may simply not have been reported; selecting it does not activate it.
 
-**Try this**
+**Next action:** If a regular window remains unavailable, report the provider state and runtime version when available. Do not supply an API key to QuotaMew or estimate a quota from other windows.
 
-1. Quit QuotaMew and open it again from the **Applications** folder.
-2. Check whether QuotaMew is allowed to appear in the menu bar in macOS settings.
-3. If your menu bar contains many items, make sure the QuotaMew icon is not hidden or unavailable because of limited space.
+## Values are not refreshing
 
-**Still not working?**
+**Symptom and likely causes:** Percentages look unchanged or the last refresh is old. Background refresh is every 15 minutes while running; the provider may also report unchanged data. Countdown changes are local display updates.
 
-Restart QuotaMew and check whether the issue happens again.
+**Safe checks:** Use **Refresh Now**, then check refresh/provider state. Confirm the provider is enabled, its runtime can communicate normally, and your Mac is awake. Avoid repeatedly triggering refresh.
 
-If the problem continues, report the issue and include your macOS version and QuotaMew version.
+**Next action:** If a refresh finishes but remains unavailable, use the previous section. If refreshing stays stuck or fails repeatedly, quit and reopen QuotaMew and report the timing plus sanitized Diagnostics.
 
-## A provider appears disconnected
+## Notifications do not appear
 
-**Symptom**
+**Symptom and likely causes:** A reset reminder or completed-reset notification is absent. Notifications may be disabled, denied by macOS, suppressed by Focus, already deduplicated, or ineligible because data is stale or incomplete.
 
-A provider in QuotaMew shows a disconnected or unavailable state.
+**Safe checks:** In **Settings → Notifications**, enable reset notifications and select reminder times. Check **System Settings → Notifications → QuotaMew** and Focus. Keep QuotaMew running with a working provider, then refresh. Luna Reserve does not generate these notifications.
 
-**Try this**
+**Next action:** Read [Notifications and reset reminders](./menu-bar.mdx#notifications-and-reset-reminders). A countdown reaching zero or repeatedly refreshing is not a notification test. If an expected regular-window reminder is missing, report the selected reminder and time without exposing private quota values.
 
-1. Make sure the corresponding provider application or environment is installed and available.
-2. Open the provider application if required.
-3. Return to QuotaMew and refresh the usage information.
-4. Check your provider settings in QuotaMew.
+## Menu-bar display is not what I expect
 
-**Still not working?**
+**Symptom and likely causes:** You see Used instead of Remaining, the wrong provider, a dash, or a wider item. These may follow your display preferences.
 
-Quit and reopen QuotaMew.
+**Safe checks:** In **Settings → General**, check usage display, Menu Bar Provider, Single / Overview and the Single-mode quota. Single shows one selected quota; Overview is wider and shows regular windows together. An explicit pin stays pinned when unavailable, and a missing selected quota stays a dash.
 
-If the provider remains disconnected, include the provider name and the state shown by QuotaMew when reporting the issue.
+**Next action:** Use [Menu Bar and Settings](./menu-bar.mdx) to adjust presentation. Changing a display choice does not change account limits.
 
-## Usage information is not refreshing
+## Settings seem not to apply
 
-**Symptom**
+**Symptom and likely causes:** A display choice has no apparent effect, or Launch at Login awaits system approval. Quota selection applies to Single mode; the pinned provider may be disabled or missing data.
 
-The usage information displayed by QuotaMew appears outdated or does not change after a refresh.
+**Safe checks:** Confirm the relevant display mode, provider enablement and macOS approval messages. Display preferences apply without refreshing. After restarting the copy in Applications, check whether the same preferences remain.
 
-**Try this**
+**Next action:** If preferences do not persist, report the category and steps to reproduce. Do not reset or delete arbitrary preference files. Launch at Login approval belongs in **System Settings → General → Login Items**.
 
-1. Make sure the provider is connected and available.
-2. Use the refresh action in QuotaMew.
-3. Wait briefly and check the usage information again.
-4. Quit and reopen QuotaMew if the issue continues.
+## Claude does not work
 
-**Still not working?**
+**Symptom and likely cause:** Claude is not configured or unavailable even though Claude Code is installed. Support is **Experimental / Unverified**; Stable's snapshot reader is not an installed bridge.
 
-When reporting the issue, include:
+**Safe checks:** Read the [Claude limitations](./providers.mdx#claude-code-experimental--unverified). Enabling the provider does not create a compatible snapshot.
 
-- The affected provider
-- Your QuotaMew version
-- Your macOS version
-- What QuotaMew displayed before and after refreshing
+**Next action:** Treat Claude as unverified. Do not replace a status-line command, scan transcripts, or provide credentials to work around it. Disable the provider if you do not need the experimental card.
+
+## Something looks wrong after updating
+
+**Symptom and likely causes:** Old UI remains, or a display preference differs. The old copy may still be running, or the selected provider/window may be unavailable.
+
+**Safe checks:** Quit QuotaMew before replacing the app, launch the copy in Applications, and check its version in Diagnostics. Follow [Updating](./updating.mdx); settings normally remain local across app replacement.
+
+**Next action:** Recheck provider and display settings. If it persists, report the previous/new versions and reproducible steps; do not delete app data as a first response.
 
 ## Still need help?
 
-If the problem continues, report it through the QuotaMew GitHub issue tracker.
+Use the [QuotaMew issue tracker](https://github.com/YinCheng0106/QuotaMew/issues). Include the app/macOS versions, provider state, expected and actual behavior, and reproducible steps. The built-in **Copy Diagnostics** report can help after you review it.
 
-Please include as much of the following information as possible:
+<Callout type="warn" title="Review before sharing">
 
-- QuotaMew version
-- macOS version
-- Affected provider
-- What you expected to happen
-- What actually happened
-- Steps that reproduce the issue
-- Relevant screenshots, if available
-
-<Callout type="info" title="Do not include sensitive information">
-
-Before posting logs or screenshots publicly, check that they do not contain personal information, credentials, access tokens, or other sensitive data.
+Redact screenshots. Do not attach credentials, access tokens, prompts, source code, sessions, private paths, raw provider responses or broad system logs. See [Privacy](./privacy.mdx).
 
 </Callout>

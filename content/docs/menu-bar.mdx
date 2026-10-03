@@ -24,8 +24,39 @@ The General settings screen controls how quota values are presented, which provi
 
 <ImageZoom src="/images/screenshots/quotamew-settings.png" alt="QuotaMew settings showing Remaining and Used presentation plus Single and Overview menu bar modes" width={420} height={542} className="mx-auto h-auto w-full max-w-[420px]" />
 
-## Onboarding and Settings
+## Settings categories
+
+Open **Settings…** from the status item's right-click menu.
+
+| Category | Controls |
+| --- | --- |
+| General | Launch at Login, Show Menu Bar Item, Remaining / Used, Menu Bar Provider, Single / Overview, Single-mode quota selection, replay onboarding, Diagnostics |
+| Providers | Enable or disable Codex and the Experimental / Unverified Claude reader |
+| Notifications | Enable reset notifications, request permission, and choose reminder times |
+
+**Automatic** chooses a provider with renderable quota data. Pinning a provider keeps that choice even if it becomes disabled or unavailable; it does not silently switch to another provider. If a selected quota is missing, its value is shown as a dash rather than substituted with another quota.
+
+Display choices update the presentation without requiring a provider refresh. Provider enablement, pinning, display mode, selected quota, notification preferences and onboarding state persist locally across launches. Launch at Login is managed by macOS; if approval is required, follow the message in Settings and check **System Settings → General → Login Items**.
+
+Background refresh is every 15 minutes while the app is running; use **Refresh Now** when you need a new reading. A countdown changing does not mean quota data was fetched again.
+
+## Onboarding
 
 The first-run onboarding briefly explains provider status, privacy, quota presentation, provider preference, Launch at Login, and optional notifications. It is not an account-creation or provider-installation wizard. You can replay onboarding from Settings.
 
 Notification permission is requested only after you explicitly choose the notification action. Notifications are optional and are delivered locally by macOS.
+
+## Notifications and reset reminders
+
+In **Settings → Notifications**, turn on **Enable reset notifications** and grant macOS permission when requested. Routine refreshes do not open a permission prompt. If permission was denied, enable QuotaMew in **System Settings → Notifications**.
+
+- For short windows (up to 6 hours), select **1-hour** and/or **30-minute** reminders.
+- For long windows, select **24-hour**, **6-hour** and/or **1-hour** reminders.
+- A reminder can tell you a reset is approaching or that significant quota remains before reset. QuotaMew can also notify when new provider data supports detecting a completed reset.
+- Luna Reserve is informational and does not generate reset reminders or completed-reset notifications.
+
+Notifications depend on fresh, supported quota data and valid reset information. A countdown reaching zero alone does not prove the provider reset. Repeated refreshes are deduplicated using bounded local state, so the same reminder is not repeatedly sent for one quota cycle.
+
+QuotaMew must be running to evaluate new data. Sleep, unavailable quota, disabled providers, notification permissions and macOS Focus or notification settings can affect timing or visibility. Delivery is not guaranteed, and missed thresholds are not a promise of catch-up notifications.
+
+See [Notifications do not appear](./troubleshooting.mdx#notifications-do-not-appear) for safe checks and [Privacy](./privacy.mdx) for local-state details.

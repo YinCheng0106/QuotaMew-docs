@@ -1,12 +1,14 @@
 ---
 title: Privacy
-description: Learn how QuotaMew handles your data and provider information.
+description: Understand quota metadata access, local settings and notification state, diagnostics, and QuotaMew's no-telemetry boundary.
 icon: LockKeyhole
 ---
 
-QuotaMew is designed around local, privacy-first processing.
+QuotaMew's Stable quota monitoring focuses on provider quota metadata and local application state.
 
 It does not require a QuotaMew account, backend service, analytics service, or cloud sync.
+
+QuotaMew has no telemetry or advertising analytics and does not sell user data. This describes the app; it does not describe the provider runtime or every website you visit.
 
 <Callout type="info" title="Local by default">
 
@@ -18,7 +20,7 @@ QuotaMew does not intentionally upload your prompts, conversations, source code,
 
 ## What QuotaMew accesses
 
-QuotaMew accesses only the provider information needed to display supported quota usage and reset information.
+QuotaMew requests provider quota information to display supported windows and reset times, rather than analyzing prompts or coding content.
 
 ### Codex
 
@@ -32,11 +34,13 @@ QuotaMew does not read or copy your Codex authentication file, scrape the intera
 
 ### Claude Code
 
-Claude Code support is currently experimental and unverified.
+Claude Code support is currently **Experimental / Unverified**.
 
 The implemented integration reads only a small, versioned snapshot designed for QuotaMew.
 
 It does not scan Claude transcripts, conversation history, authentication credentials, or internal usage caches.
+
+Stable does not install or configure the snapshot bridge. See [Providers](./providers.mdx) for its limitations.
 
 ## What QuotaMew does not intentionally collect
 
@@ -65,6 +69,12 @@ These preferences can include:
 - Onboarding state
 
 These settings are associated with the local QuotaMew installation and are not synchronized through a QuotaMew cloud service.
+
+## Local notification and reset state
+
+Settings are not the only local state. QuotaMew keeps a bounded amount of application-managed state to avoid duplicate notifications and compare recent quota cycles when detecting resets. This can include provider/window identifiers, reset and capture times, reminder markers, and recent quota values. It is local product state, not a full historical analytics record or cloud upload.
+
+See [Notifications and reset reminders](./menu-bar.mdx#notifications-and-reset-reminders) for behavior and delivery limits.
 
 ## Diagnostics
 
@@ -105,9 +115,3 @@ QuotaMew itself currently does not require a QuotaMew backend, account service, 
 When using Codex, QuotaMew communicates with the locally installed Codex runtime. The runtime is responsible for its normal communication with the provider and for authentication.
 
 The privacy and network behavior of ChatGPT, Codex, Claude Code, macOS, and other software running on your Mac are governed by those products and are outside QuotaMew's implementation boundary.
-
-## Future features
-
-QuotaMew may gain features in the future that require additional network access, such as retrieving publicly available reset information.
-
-If a future feature changes QuotaMew's data or network behavior, this documentation will be updated to describe the new behavior before it is treated as part of the stable product.

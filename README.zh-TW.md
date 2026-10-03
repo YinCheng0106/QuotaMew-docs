@@ -4,7 +4,7 @@
 
 [QuotaMew](https://github.com/YinCheng0106/QuotaMew) 官方網站與文件的原始碼。
 
-QuotaMew 是一款輕量、原生的 macOS 選單列 App，用來查看 AI 程式開發工具的使用量與額度重置時間。
+QuotaMew 是原生 macOS 選單列 App，用來查看 AI 程式開發工具（尤其是 Codex）的額度與重置時間。
 
 **官方網站：** [quotamew.yincheng.app](https://quotamew.yincheng.app)
 
@@ -20,6 +20,7 @@ QuotaMew 是一款輕量、原生的 macOS 選單列 App，用來查看 AI 程�
 - 更新方式
 - 疑難排解與常見問題
 - 隱私與相容性文件
+- Provider 前置需求與通知說明
 - 英文與臺灣繁體中文本地化
 
 QuotaMew App 本身則由獨立的 [QuotaMew repository](https://github.com/YinCheng0106/QuotaMew) 維護。

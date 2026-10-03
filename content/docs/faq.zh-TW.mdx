@@ -18,9 +18,11 @@ QuotaMew 是免費且開源的軟體，並以 MIT License 授權。
 
 </Accordion>
 
-<Accordion title="我需要 OpenAI API Key 嗎？" id="api-key">
+<Accordion title="QuotaMew 需要我的 OpenAI 密碼或 API Key 嗎？" id="api-key">
 
 不需要額外提供 OpenAI API Key 來使用目前支援的 Codex 整合。
+
+請勿把 OpenAI 密碼或憑證提供給 QuotaMew。登入由 Codex 處理，前置需求請見 [Providers](./providers.mdx)。
 
 QuotaMew 會與你的 Mac 上可相容的 Codex runtime 溝通。
 
@@ -102,13 +104,11 @@ QuotaMew 會透過相容的 Codex runtime 取得所需的使用資訊，而驗�
 
 </Accordion>
 
-<Accordion title="QuotaMew 有使用 Analytics 或 Cloud Sync 嗎？" id="analytics">
+<Accordion title="QuotaMew 會傳送遙測或使用雲端同步嗎？" id="analytics">
 
 目前沒有。
 
-QuotaMew 目前沒有 QuotaMew 帳號系統、分析追蹤、自己的雲端後端或 Cloud Sync。
-
-如果未來新增會影響隱私權的功能，相關行為會在文件中更新說明。
+目前 App 無遙測、無廣告分析，沒有 QuotaMew 帳號、自己的後端或雲端同步。它會儲存本機設定與有限的通知／重置狀態，詳見[隱私權](./privacy.mdx)。
 
 </Accordion>
 
@@ -136,7 +136,25 @@ Intel Mac 尚未完成正式驗證，因此在文件明確標示支援以前，�
 
 目前 **Codex** 為已驗證支援的 Provider。
 
-**Claude Code** 支援目前仍屬於 **Experimental / Unverified**，尚未完成正式驗證。
+**Claude Code** 仍屬於**實驗性／未驗證**。穩定版只有有限的 snapshot reader，沒有橋接設定或真實訂閱帳號驗證。只安裝 Claude 不會啟用額度監控，詳見 [Providers](./providers.mdx)。
+
+</Accordion>
+
+</Accordions>
+
+## 額度與顯示
+
+<Accordions>
+
+<Accordion title="QuotaMew 會改變我的 Codex 額度嗎？" id="change-quota">
+
+不會。QuotaMew 只呈現 Provider 回報的限制與重置時間，不會增加額度、重置額度或啟用 Luna Reserve。
+
+</Accordion>
+
+<Accordion title="可以改成顯示剩餘，而非已使用嗎？" id="remaining-used">
+
+可以。在「設定 → 一般」選擇「剩餘」或「已使用」。Single 與 Overview 則決定選單列呈現幾個額度視窗，詳見[選單列與設定](./menu-bar.mdx)。
 
 </Accordion>
 

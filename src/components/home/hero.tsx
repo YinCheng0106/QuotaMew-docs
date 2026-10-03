@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { StableDownloadLink } from '../release-actions';
 
 type HeroContent = {
   badge: string;
@@ -14,12 +15,10 @@ type HeroContent = {
 export function Hero({
   content,
   lang,
-  downloadUrl,
   docsUrl,
 }: {
   content: HeroContent;
   lang: string;
-  downloadUrl: string;
   docsUrl: string;
 }) {
   return (
@@ -42,13 +41,7 @@ export function Hero({
         </p>
 
         <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-          <Link
-            href={downloadUrl}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-fd-primary px-5 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
-          >
-            <Download className="size-4" />
-            {content.download}
-          </Link>
+          <StableDownloadLink locale={lang} />
         
           <Link
             href={docsUrl}

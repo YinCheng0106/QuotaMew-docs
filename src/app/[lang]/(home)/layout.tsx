@@ -1,5 +1,6 @@
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
 import { baseOptions } from '@/lib/layout.shared';
+import { SiteFooter } from '@/components/site-footer';
 
 export default async function Layout({
   children,
@@ -10,6 +11,7 @@ export default async function Layout({
   return (
     <HomeLayout {...baseOptions(lang)}>
       {children}
+      <SiteFooter locale={lang} />
     </HomeLayout>
   );
 }

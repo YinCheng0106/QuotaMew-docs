@@ -1,108 +1,97 @@
 ---
 title: 疑難排解
-description: 查看 QuotaMew 常見問題與建議的解決方式。
+description: 安全檢查啟動問題、Codex 額度缺失、資料未更新、通知與選單列設定。
 icon: Wrench
 ---
 
-如果 QuotaMew 沒有按照預期運作，可以先從以下常見問題開始檢查。
+請先找到符合的症狀。可在[穩定版下載頁面](/zh-TW/download)確認目前版本；安裝或更新後，從 Applications 啟動 QuotaMew。不需要刪除設定、runtime 檔案或登入資料。
 
-## QuotaMew 無法開啟
+## QuotaMew 沒有出現
 
-**症狀**
+**症狀與可能原因：** 找不到 Dock 視窗或選單列項目。QuotaMew 是選單列 App；項目可能被停用，或因空間不足、macOS 顯示控制而隱藏。
 
-macOS 顯示安全性警告，或阻止 QuotaMew 啟動。
+**安全檢查：** 查看選單列與你使用的選單列收納工具。從 Applications 開啟 QuotaMew，使用可用的恢復／設定介面；在「**設定 → 一般**」確認「**顯示選單列項目**」。若 macOS 要求顯示核准，請依 App 訊息操作。
 
-**可以嘗試**
+**下一步：** 仍未出現時，透過可用的選單或介面退出目前執行的 App，再重新開啟。若持續發生，回報 App 與 macOS 版本；避免同時執行多個下載副本。
 
-<StableDistribution locale="zh-TW" />macOS 第一次啟動時可能會要求額外核准。
+## App 無法開啟
 
-請依照[首次啟動指南](./first-launch.mdx)中的步驟操作。
+**症狀與可能原因：** macOS 阻擋剛安裝或更新的副本。目前的散布簽章可能需要個別 App 核准。
 
-<Callout type="warn" title="請勿停用 macOS 的全域安全性機制">
+**安全檢查：** 確認檔案來自本站或官方 GitHub Release，且已移至 Applications。依[首次啟動指南](./first-launch.mdx)操作，只有信任來源時才使用「**系統設定 → 隱私權與安全性 → 仍要打開**」。
 
-請只使用 macOS 提供的個別 App 核准方式開啟 QuotaMew。
+**下一步：** 若訊息表示 App 會損害電腦或已遭修改，請停止並確認來源，不要略過警告。其他持續的啟動問題，請回報不含敏感資訊的原始訊息與版本，並保持系統安全性保護啟用。
 
-不需要停用 Gatekeeper 或其他系統安全性功能。
+## 沒有顯示 Codex 額度
 
-</Callout>
+**症狀與可能原因：** Codex 被停用、未安裝、未設定或沒有出現。本機 runtime 可能缺少或無法被找到，也可能尚未完成 Codex 登入。
 
-## QuotaMew 沒有出現在選單列
+**安全檢查：** 依 [Codex 前置需求](./providers.mdx#codex-前置需求)檢查。在「**設定 → Providers**」啟用 **Codex**，確認開發工具本身可登入，再從 QuotaMew 右鍵選單執行「**立即重新整理**」。只有瀏覽器登入或終端機 alias，不等於有本機 runtime。
 
-**症狀**
+**下一步：** 到「**設定 → 一般 → Diagnostics**」查看 runtime 與連線狀態。需要協助時可複製內建報告；請勿複製憑證或 runtime 原始輸出。
 
-QuotaMew 已經啟動，但在 macOS 選單列中找不到 QuotaMew 圖示。
+## 額度顯示不可用
 
-**可以嘗試**
+**症狀與可能原因：** Provider 卡片顯示不可用／失敗，或額度顯示破折號。runtime 回應、驗證模式或額度視窗可能不受支援。缺少資料不等於剩餘額度為零。
 
-先確認 QuotaMew 是否仍在執行。
+**安全檢查：** 查看 Provider 狀態與 Diagnostics，確認 Codex 本身可正常使用，再重新整理一次。若只有 Luna Reserve 缺少資料，可能只是 Provider 沒有回報；選取它不會啟用 Reserve。
 
-如果 QuotaMew 的設定或選單列顯示選項可用，請確認選單列圖示沒有被停用。
+**下一步：** 一般額度視窗持續不可用時，回報 Provider 狀態與可取得的 runtime 版本。請勿提供 API Key 給 QuotaMew，也不要從其他視窗推估額度。
 
-你也可以重新結束並開啟 QuotaMew。
+## 數值沒有更新
 
-macOS 本身也可能因為選單列空間不足或系統設定而隱藏部分項目。
+**症狀與可能原因：** 百分比沒變，或上次重新整理時間很久以前。App 執行期間每 15 分鐘背景重新整理；Provider 也可能回報相同資料。倒數變化只是本機畫面更新。
 
-**仍然無法解決？**
+**安全檢查：** 執行「**立即重新整理**」，查看重新整理與 Provider 狀態。確認 Provider 已啟用、runtime 可正常通訊，且 Mac 沒有睡眠；避免連續觸發重新整理。
 
-重新開啟 QuotaMew 後，如果選單列圖示仍然沒有出現，請在回報問題時附上你的 macOS 與 QuotaMew 版本。
+**下一步：** 重新整理完成但仍不可用時，依前一節檢查；若長時間卡住或反覆失敗，退出並重新開啟 QuotaMew，再回報時間與經檢查的 Diagnostics。
 
-## Provider 顯示為未連線
+## 沒有收到通知
 
-**症狀**
+**症狀與可能原因：** 沒有重置前提醒或已重置通知。可能是通知被停用、macOS 拒絕權限、專注模式抑制、提醒已去重，或資料過期／缺漏而不符合條件。
 
-QuotaMew 可以正常開啟，但 Provider 顯示為未連線或無法取得使用資訊。
+**安全檢查：** 在「**設定 → 通知**」啟用重置通知並選擇提醒時間，檢查「**系統設定 → 通知 → QuotaMew**」與專注模式。讓 QuotaMew 持續執行，確認 Provider 可用後重新整理。Luna Reserve 不會產生這些通知。
 
-**可以嘗試**
+**下一步：** 閱讀[通知與重置提醒](./menu-bar.mdx#通知與重置提醒)。倒數歸零或反覆重新整理不等於通知測試。若預期的一般額度提醒沒有出現，可回報提醒選項與時間，不需公開私人額度數值。
 
-確認對應的 Provider 已經安裝、可正常使用，並且已完成自己的登入或驗證流程。
+## 選單列顯示與預期不同
 
-QuotaMew 不會取代 Provider 本身的驗證流程。
+**症狀與可能原因：** 顯示已使用而非剩餘、Provider 不同、破折號或較寬的項目，可能來自顯示偏好。
 
-對於 Codex，請先確認相容的 Codex runtime 在你的 Mac 上可正常使用。
+**安全檢查：** 在「**設定 → 一般**」查看額度呈現、選單列 Provider、Single／Overview 與 Single 額度選擇。Single 顯示一個額度；Overview 較寬，會一起顯示一般視窗。固定的 Provider 不可用時仍維持選擇；選取額度缺少資料時維持破折號。
 
-Claude Code 支援目前仍屬於實驗性功能，尚未完成正式驗證。
+**下一步：** 依[選單列與設定](./menu-bar.mdx)調整呈現方式。變更顯示選項不會改變帳號額度。
 
-**仍然無法解決？**
+## 設定似乎沒有套用
 
-如果 QuotaMew 提供 Diagnostics 功能，建議複製 Diagnostics 資訊並附在問題回報中。
+**症狀與可能原因：** 顯示選擇看不出效果，或登入時啟動等待系統核准。額度選擇只適用於 Single；固定的 Provider 也可能被停用或沒有資料。
 
-請勿自行貼出 Token、憑證、完整 Provider 回應、私人路徑、Prompt、原始碼或其他敏感資料。
+**安全檢查：** 確認對應模式、Provider 啟用狀態與 macOS 核准訊息。顯示偏好不需重新整理就會套用；重新啟動 Applications 裡的副本後，確認同一組偏好是否保留。
 
-## 使用資訊沒有更新
+**下一步：** 若設定無法保留，回報分類與重現步驟，不要重設或刪除任意偏好檔案。登入時啟動的核准請到「**系統設定 → 一般 → 登入項目**」處理。
 
-**症狀**
+## Claude 無法使用
 
-QuotaMew 顯示的使用量或重置時間似乎沒有更新。
+**症狀與可能原因：** 已安裝 Claude Code，仍顯示未設定或不可用。支援屬於**實驗性／未驗證**；穩定版 snapshot reader 不代表已安裝橋接。
 
-**可以嘗試**
+**安全檢查：** 閱讀 [Claude 限制](./providers.mdx)。啟用 Provider 不會建立相容 snapshot。
 
-QuotaMew 會以保守的更新頻率取得 Provider 狀態，因此資料不一定會即時變化。
+**下一步：** 請將 Claude 視為未驗證功能。不要取代 status-line 指令、掃描對話紀錄或提供憑證來繞過限制；若不需要實驗性卡片，可停用 Provider。
 
-如果目前版本提供手動重新整理功能，可以先嘗試手動重新整理。
+## 更新後顯示異常
 
-也可以確認 Provider 本身目前是否可以正常取得使用資訊。
+**症狀與可能原因：** 仍看到舊介面，或顯示偏好不同。可能仍在執行舊副本，或所選 Provider／額度資料不可用。
 
-**仍然無法解決？**
+**安全檢查：** 取代 App 前先退出 QuotaMew，從 Applications 開啟新版，並在 Diagnostics 確認版本。依[更新指南](./updating.mdx)操作；取代 App 通常會保留本機設定。
 
-如果數值長時間沒有更新，可以重新啟動 QuotaMew，並記錄問題發生的時間與 Provider 狀態。
+**下一步：** 再確認 Provider 與顯示偏好。持續發生時，回報更新前後版本與可重現步驟；不要先刪除 App 資料。
 
 ## 仍然需要協助？
 
-如果以上方法都沒有解決問題，可以到 QuotaMew 的 GitHub Repository 回報。
+請到 [QuotaMew Issue tracker](https://github.com/YinCheng0106/QuotaMew/issues)回報 App／macOS 版本、Provider 狀態、預期與實際行為，以及重現步驟。檢查內容後，可附上內建「**Copy Diagnostics**」報告。
 
-為了讓問題更容易重現，建議提供：
+<Callout type="warn" title="分享前先檢查">
 
-- QuotaMew 版本
-- macOS 版本
-- 使用的 Provider
-- 預期發生的行為
-- 實際發生的行為
-- 可以穩定重現問題的步驟
-- 必要時提供螢幕截圖
-- QuotaMew 產生的 privacy-safe Diagnostics（如果可用）
-
-<Callout type="warn" title="回報前請檢查敏感資訊">
-
-請勿公開 API Key、Token、登入憑證、Provider Session、Prompt、原始碼、私人檔案路徑或其他敏感資訊。
+請遮蔽截圖中的敏感內容。不要附上憑證、Token、提示詞、原始碼、Session、私人路徑、Provider 原始回應或大量系統日誌。詳見[隱私權](./privacy.mdx)。
 
 </Callout>

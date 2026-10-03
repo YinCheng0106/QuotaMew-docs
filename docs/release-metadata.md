@@ -193,8 +193,18 @@ only older candidates remain. Never automatically clear a channel. Withdrawn or
 bad releases require a manually reviewed snapshot correction/removal. The
 website validates both local snapshots; `getPreviewRelease()` returns null for
 absence or a retained Preview overtaken by Stable, without deleting that snapshot.
-`getStableRelease()` always supplies the primary CTA. Future Preview UI must be
-a secondary explicit opt-in; this phase changes no public content or install flow.
+`getStableRelease()` always supplies the primary CTA. Preview UI is
+a secondary explicit opt-in; it renders nothing when the accessor returns null.
+
+## Content ownership
+
+Release snapshots are machine-managed and validated. Versions, artifact URLs,
+sizes, checksums and signing facts reach public components only through
+`getStableRelease()` / `getPreviewRelease()` and release presentation helpers.
+Product copy, provider support, privacy, troubleshooting and feature explanations
+are curated in bilingual content. A new snapshot does not automatically change
+Stable feature claims; review curated copy against the released app before
+publishing it. GitHub Releases owns historical release notes and artifacts.
 
 ## Synchronization workflow and review boundary
 

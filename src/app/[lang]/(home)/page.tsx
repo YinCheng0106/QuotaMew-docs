@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { FeaturesSection } from '@/components/home/features';
 import { Hero } from '@/components/home/hero';
-import { MacOSSection } from '@/components/home/macos-section';
+import { GettingStartedSummary, MonitoringSection } from '@/components/home/product-summary';
+import { PreviewRelease } from '@/components/release-actions';
 import { OpenSourceSection } from '@/components/home/open-source';
 import { ProvidersSection } from '@/components/home/providers';
 import { getHomeContent } from '@/lib/home-content';
@@ -27,8 +28,8 @@ export async function generateMetadata({
     : 'QuotaMew — AI Coding Quota & Reset Monitor for macOS';
 
   const metaDescription = isTraditionalChinese
-    ? 'QuotaMew 是一款輕量的原生 macOS 選單列 App，讓你快速查看 AI 程式開發工具的使用量、剩餘額度與重置時間，並透過本機通知掌握重要的額度重置資訊。'
-    : 'QuotaMew is a lightweight native macOS menu bar app for monitoring AI coding usage, remaining quota, reset times, and local reset notifications.';
+    ? 'QuotaMew 是原生 macOS 選單列額度工具，可查看 Codex 剩餘或已使用額度、重置時間，並提供選用的本機通知。無遙測，設定保存在本機。'
+    : 'A native macOS menu-bar app for Codex quota, Remaining or Used display, reset times and optional local notifications. Local-first settings, no telemetry.';
 
   const ogTitle = isTraditionalChinese
     ? 'QuotaMew — 一眼掌握你的 AI 程式開發額度'
@@ -100,22 +101,23 @@ export default async function HomePage({
   const githubUrl =
     `https://github.com/${productGitConfig.user}/${productGitConfig.repo}`;
 
-  const downloadUrl = localizePath(lang, '/download');
-
   return (
     <main className="flex flex-1 flex-col">
       <Hero
         content={content.hero}
         lang={lang}
-        downloadUrl={downloadUrl}
         docsUrl={docsUrl}
       />
 
+      <div className="px-6"><PreviewRelease locale={lang} /></div>
+
       <FeaturesSection content={content.features} />
 
-      <ProvidersSection content={content.providers} />
+      <MonitoringSection locale={lang} />
 
-      <MacOSSection content={content.macOS} />
+      <ProvidersSection content={content.providers} docsUrl={localizePath(lang, '/docs/providers')} />
+
+      <GettingStartedSummary locale={lang} />
 
       <OpenSourceSection
         content={content.openSource}

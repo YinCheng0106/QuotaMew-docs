@@ -2,7 +2,7 @@
 
 **English** | [繁體中文](README.zh-TW.md)
 
-Official website and documentation source for [QuotaMew](https://github.com/YinCheng0106/QuotaMew), a lightweight native macOS menu bar app for monitoring AI coding usage and reset times.
+Official website and documentation source for [QuotaMew](https://github.com/YinCheng0106/QuotaMew), a native macOS menu-bar app for monitoring AI coding quota and reset times, especially Codex.
 
 **Website:** [quotamew.yincheng.app](https://quotamew.yincheng.app)
 
@@ -18,6 +18,7 @@ It provides:
 - Updating instructions
 - Troubleshooting and FAQ
 - Privacy and compatibility documentation
+- Provider prerequisites and notification guidance
 - English and Traditional Chinese localization
 
 The QuotaMew application itself is maintained separately in the [QuotaMew repository](https://github.com/YinCheng0106/QuotaMew).

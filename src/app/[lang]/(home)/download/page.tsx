@@ -1,19 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import {
-  ArrowRight,
-  Download,
-  ExternalLink,
-  Laptop,
-  ShieldCheck,
-} from 'lucide-react';
-
+import { PreviewRelease, StableDownloadLink } from '@/components/release-actions';
 import { getDownloadContent } from '@/lib/download-content';
 import { localizePath } from '@/lib/i18n';
 import { getStableRelease } from '@/lib/release';
 import { getStableReleasePresentation } from '@/lib/release-presentation';
 import { absoluteUrl, localizedAlternates } from '@/lib/site-url';
-import { docsRoute } from '@/lib/shared';
 
 export async function generateMetadata({
   params,
@@ -22,382 +14,105 @@ export async function generateMetadata({
   const content = getDownloadContent(lang);
   const canonicalPath = localizePath(lang, '/download');
   const canonicalUrl = absoluteUrl(canonicalPath);
-  const ogImageUrl = absoluteUrl(
-    localizePath(lang, '/og/home'),
-  );
-
+  const image = absoluteUrl(localizePath(lang, '/og/home'));
   return {
     title: content.eyebrow,
     description: content.description,
-    alternates: {
-      canonical: canonicalUrl,
-      languages: localizedAlternates(canonicalPath),
-    },
+    alternates: { canonical: canonicalUrl, languages: localizedAlternates(canonicalPath) },
     openGraph: {
-      type: 'website',
-      url: canonicalUrl,
-      siteName: 'QuotaMew',
-      title: content.title,
-      description: content.description,
-      locale: lang === 'zh-TW' ? 'zh_TW' : 'en_US',
-      images: [ogImageUrl],
+      type: 'website', url: canonicalUrl, siteName: 'QuotaMew',
+      title: content.title, description: content.description,
+      locale: lang === 'zh-TW' ? 'zh_TW' : 'en_US', images: [image],
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: content.title,
-      description: content.description,
-      images: [ogImageUrl],
-    },
+    twitter: { card: 'summary_large_image', title: content.title, description: content.description, images: [image] },
   };
 }
 
-export default async function DownloadPage({
-  params,
-}: PageProps<'/[lang]/download'>) {
+export default async function DownloadPage({ params }: PageProps<'/[lang]/download'>) {
   const { lang } = await params;
   const content = getDownloadContent(lang);
-
+  const metadata = getStableRelease();
   const release = getStableReleasePresentation(lang);
-
-  const installationUrl = localizePath(
-    lang,
-    `${docsRoute}/installation`,
-  );
-
-  const firstLaunchUrl = localizePath(
-    lang,
-    `${docsRoute}/first-launch`,
-  );
-
+  const yesNo = (value: boolean) => value ? content.release.yes : content.release.no;
+  const github = release.releaseURL.slice(0, release.releaseURL.lastIndexOf('/tag/'));
   return (
     <main className="flex flex-1 flex-col">
-      <section>
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-20 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border bg-fd-secondary/50 px-3 py-1 text-sm text-fd-muted-foreground">
-              <span>{release.channelLabel}</span>
-
-              <span aria-hidden="true">·</span>
-
-              <span>
-                {content.status.available}
-              </span>
-            </div>
-
-            <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              {content.title}
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-7 text-fd-muted-foreground sm:text-lg sm:leading-8">
-              {content.description}
-            </p>
-
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                href={release.downloadURL}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-fd-primary px-5 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
-              >
-                <Download className="size-4" />
-                {content.actions.download}
-              </a>
-
-              <a
-                href={release.releaseURL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border bg-fd-background px-5 text-sm font-medium transition-colors hover:bg-fd-accent"
-              >
-                {content.actions.github}
-                <ExternalLink className="size-4" />
-              </a>
-            </div>
+      <section className="mx-auto w-full max-w-6xl px-6 pb-12 pt-20 sm:pt-28 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium text-fd-muted-foreground">{release.headline}</p>
+          <h1 className="mt-4 text-balance text-4xl font-bold tracking-tight sm:text-5xl">{content.title}</h1>
+          <p className="mt-6 leading-7 text-fd-muted-foreground">{content.description}</p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <StableDownloadLink locale={lang} />
+            <a href={release.releaseURL} className="inline-flex min-h-11 items-center justify-center rounded-lg border px-5 py-2 text-sm font-medium hover:bg-fd-accent">{content.actions.github}</a>
           </div>
+        </div>
+        <div className="mx-auto mt-10 max-w-4xl rounded-2xl border bg-fd-card p-6 sm:p-8">
+          <h2 className="text-lg font-semibold">{content.release.title}</h2>
+          <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+            <ReleaseItem label={content.release.version} value={release.versionLabel} />
+            <ReleaseItem label={content.release.channel} value={release.channelLabel} />
+            <ReleaseItem label={content.release.compatibility} value={release.requirements} />
+            <ReleaseItem label={content.release.artifact} value={release.filename} />
+            <ReleaseItem label={content.release.size} value={`${release.size} (${release.sizeExact})`} />
+          </dl>
+        </div>
+        <PreviewRelease locale={lang} />
+      </section>
 
-          <ReleaseOverview
-            content={content}
-            lang={lang}
-          />
+      <section className="border-t bg-fd-secondary/20">
+        <div className="mx-auto max-w-4xl px-6 py-12">
+          <h2 className="text-2xl font-semibold">{content.security.title}</h2>
+          <p className="mt-4 leading-7 text-fd-muted-foreground">{content.security.source}</p>
+          <p className="mt-4 text-sm leading-6 text-fd-muted-foreground">{content.security.description}</p>
+          <p className="mt-4 leading-7">{content.security.action}</p>
+          <p className="mt-4 leading-7 text-fd-muted-foreground">{content.security.expectation}</p>
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm underline underline-offset-4">
+            <Link href={localizePath(lang, '/docs/installation')}>{content.actions.installation}</Link>
+            <Link href={localizePath(lang, '/docs/first-launch')}>{content.actions.firstLaunch}</Link>
+            <Link href={localizePath(lang, '/docs/providers')}>{lang === 'zh-TW' ? 'Provider 前置需求' : 'Provider prerequisites'}</Link>
+          </div>
         </div>
       </section>
 
-      <SecuritySection
-        content={content}
-        installationUrl={installationUrl}
-      />
+      <section className="border-t">
+        <div className="mx-auto max-w-4xl px-6 py-12">
+          <h2 className="text-xl font-semibold">{content.verification.title}</h2>
+          <p className="mt-3 text-sm leading-6 text-fd-muted-foreground">{content.verification.description}</p>
+          <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+            <ReleaseItem label={content.release.build} value={String(metadata.build)} />
+            <ReleaseItem label={content.release.signed} value={release.signingStatus} />
+            <ReleaseItem label={content.release.developerID} value={yesNo(metadata.signing.type === 'developer-id')} />
+            <ReleaseItem label={content.release.codesign} value={yesNo(metadata.signing.codesignVerified)} />
+            <ReleaseItem label={content.release.notarized} value={yesNo(metadata.signing.notarized)} />
+            <ReleaseItem label={content.release.stapled} value={yesNo(metadata.signing.stapled)} />
+            <div className="min-w-0 sm:col-span-2">
+              <dt className="text-sm text-fd-muted-foreground">{content.release.checksum}</dt>
+              <dd className="mt-2"><code className="block select-all break-all rounded-lg bg-fd-secondary p-3 text-sm">{release.sha256}</code></dd>
+            </div>
+          </dl>
+        </div>
+      </section>
 
-      <FirstLaunchSection
-        content={content}
-        firstLaunchUrl={firstLaunchUrl}
-      />
-
-      <InstallationSection
-        content={content}
-        installationUrl={installationUrl}
-      />
+      <section className="border-t">
+        <div className="mx-auto max-w-4xl px-6 py-12">
+          <h2 className="text-2xl font-semibold">{content.channels.title}</h2>
+          <p className="mt-4 leading-7">{content.channels.stable}</p>
+          <p className="mt-3 leading-7 text-fd-muted-foreground">{content.channels.preview}</p>
+          <p className="mt-3 leading-7 text-fd-muted-foreground">{content.channels.updates} <Link href={localizePath(lang, '/docs/updating')} className="underline underline-offset-4">{lang === 'zh-TW' ? '更新指南' : 'Updating guide'}</Link></p>
+          <p className="mt-3 text-sm leading-6 text-fd-muted-foreground">{content.channels.history}</p>
+          <a href={github} className="mt-4 inline-block text-sm underline underline-offset-4">{content.actions.history}</a>
+        </div>
+      </section>
     </main>
   );
 }
 
-function ReleaseOverview({
-  content,
-  lang,
-}: {
-  content: ReturnType<typeof getDownloadContent>;
-  lang: string;
-}) {
-  const metadata = getStableRelease();
-  const release = getStableReleasePresentation(lang);
-  const booleanLabel = (value: boolean) =>
-    value
-      ? content.release.yes
-      : content.release.no;
-
+function ReleaseItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="mx-auto mt-16 max-w-4xl rounded-2xl border bg-fd-card p-6 sm:mt-20 sm:p-8">
-      <div className="flex items-center gap-3">
-        <div className="flex size-10 items-center justify-center rounded-xl border bg-fd-background">
-          <Laptop className="size-5" />
-        </div>
-
-        <h2 className="text-lg font-semibold">
-          {content.release.title}
-        </h2>
-      </div>
-
-      <dl className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        <ReleaseItem
-          label={content.release.version}
-          value={release.versionLabel}
-        />
-
-        <ReleaseItem
-          label={content.release.channel}
-          value={release.channelLabel}
-        />
-
-        <ReleaseItem
-          label={content.release.compatibility}
-          value={release.requirements}
-        />
-
-        <ReleaseItem
-          label={content.release.signed}
-          value={release.signingStatus}
-        />
-
-        <ReleaseItem
-          label={content.release.notarized}
-          value={booleanLabel(
-            metadata.signing.notarized,
-          )}
-        />
-
-        <ReleaseItem
-          label={content.release.automaticUpdates}
-          value={content.release.no}
-        />
-
-        <ReleaseItem label={content.release.build} value={String(metadata.build)} />
-        <ReleaseItem label={content.release.artifact} value={release.filename} />
-        <ReleaseItem label={content.release.size} value={`${release.size} (${release.sizeExact})`} />
-        <ReleaseItem label={content.release.codesign} value={booleanLabel(metadata.signing.codesignVerified)} />
-        <ReleaseItem label={content.release.stapled} value={booleanLabel(metadata.signing.stapled)} />
-
-        <div className="min-w-0 sm:col-span-2">
-          <dt className="text-sm text-fd-muted-foreground">{content.release.checksum}</dt>
-          <dd className="mt-2">
-            <code className="block select-all break-all rounded-lg bg-fd-secondary p-3 text-sm">
-              {release.sha256}
-            </code>
-          </dd>
-        </div>
-      </dl>
+    <div className="min-w-0">
+      <dt className="text-sm text-fd-muted-foreground">{label}</dt>
+      <dd className="mt-1 break-words font-medium">{value}</dd>
     </div>
-  );
-}
-
-function ReleaseItem({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
-  return (
-    <div>
-      <dt className="text-sm text-fd-muted-foreground">
-        {label}
-      </dt>
-
-      <dd className="mt-1 break-words font-medium">
-        {value}
-      </dd>
-    </div>
-  );
-}
-
-function SecuritySection({
-  content,
-  installationUrl,
-}: {
-  content: ReturnType<typeof getDownloadContent>;
-  installationUrl: string;
-}) {
-  return (
-    <section className="border-t bg-fd-secondary/20">
-      <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:gap-6">
-          <div className="flex size-12 items-center justify-center rounded-2xl border bg-fd-background">
-            <ShieldCheck className="size-6" />
-          </div>
-
-          <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-              {content.security.title}
-            </h2>
-
-            <p className="mt-4 leading-7 text-fd-muted-foreground">
-              {content.security.description}
-            </p>
-
-            <p className="mt-4 leading-7 text-fd-muted-foreground">
-              {content.security.source}
-            </p>
-
-            <p className="mt-4 font-medium">
-              {content.security.action}
-            </p>
-
-            <Link
-              href={installationUrl}
-              className="mt-6 inline-flex items-center gap-2 text-sm font-medium hover:underline"
-            >
-              {content.actions.installation}
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function InstallationSection({
-  content,
-  installationUrl,
-}: {
-  content: ReturnType<typeof getDownloadContent>;
-  installationUrl: string;
-}) {
-  return (
-    <section className="border-t">
-      <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
-        <div className="max-w-2xl">
-          <p className="text-sm font-medium text-fd-muted-foreground">
-            {content.install.eyebrow}
-          </p>
-
-          <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-            {content.install.title}
-          </h2>
-        </div>
-
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {content.install.steps.map(
-            (step, index) => (
-              <div
-                key={step.title}
-                className="rounded-2xl border bg-fd-card p-6"
-              >
-                <div className="flex size-9 items-center justify-center rounded-full border bg-fd-background text-sm font-semibold">
-                  {index + 1}
-                </div>
-
-                <h3 className="mt-5 font-semibold">
-                  {step.title}
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
-                  {step.description}
-                </p>
-              </div>
-            ),
-          )}
-        </div>
-
-        <Link
-          href={installationUrl}
-          className="mt-8 inline-flex items-center gap-2 text-sm font-medium hover:underline"
-        >
-          {content.actions.installation}
-          <ArrowRight className="size-4" />
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-function FirstLaunchSection({
-  content,
-  firstLaunchUrl,
-}: {
-  content: ReturnType<typeof getDownloadContent>;
-  firstLaunchUrl: string;
-}) {
-  const firstLaunch = content.security.firstLaunch;
-
-  return (
-    <section className="border-t">
-      <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
-        <div className="max-w-2xl">
-          <p className="text-sm font-medium text-fd-muted-foreground">
-            {firstLaunch.eyebrow}
-          </p>
-
-          <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-            {firstLaunch.title}
-          </h2>
-
-          <p className="mt-4 text-pretty leading-7 text-fd-muted-foreground">
-            {firstLaunch.description}
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {firstLaunch.steps.map((step, index) => (
-            <div
-              key={step.title}
-              className="rounded-2xl border bg-fd-card p-6"
-            >
-              <div className="flex size-9 items-center justify-center rounded-full border bg-fd-background text-sm font-semibold">
-                {index + 1}
-              </div>
-
-              <h3 className="mt-5 font-semibold">
-                {step.title}
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-6 rounded-2xl border bg-fd-secondary/30 p-5">
-          <p className="text-sm font-medium">
-            {firstLaunch.warning}
-          </p>
-        </div>
-
-        <Link
-          href={firstLaunchUrl}
-          className="mt-6 inline-flex items-center gap-2 text-sm font-medium hover:underline"
-        >
-          {firstLaunch.docs}
-          <ArrowRight className="size-4" />
-        </Link>
-      </div>
-    </section>
   );
 }

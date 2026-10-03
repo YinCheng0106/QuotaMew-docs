@@ -4,198 +4,53 @@ export const downloadContent = {
   en: {
     eyebrow: 'Download',
     title: 'Get QuotaMew for macOS.',
-
-    status: {
-      available: 'Available now',
-    },
-
-    actions: {
-      download: 'Download for macOS',
-      github: 'View GitHub Release',
-      installation: 'Installation Guide',
-    },
-
-    requirements: {
-      title: 'System Requirements',
-      platform: 'Native macOS application',
-    },
-
-    security: {
-      title: 'Distribution and first launch',
-      source:
-        'Only download QuotaMew from this website or the official GitHub repository.',
-      action:
-        'You do not need to disable Gatekeeper or other system-wide macOS security features.',
-      firstLaunch: {
-        eyebrow: 'First Launch',
-        title: 'macOS may block QuotaMew the first time.',
-        description:
-          'If macOS blocks QuotaMew, use the individual app approval in System Settings → Privacy & Security → Open Anyway.',
-        steps: [
-          {
-            title: 'Try to open QuotaMew',
-            description:
-              'Open QuotaMew from the Applications folder. macOS may display a security warning and prevent it from launching.',
-          },
-          {
-            title: 'Open Privacy & Security',
-            description:
-              'Open System Settings and go to Privacy & Security.',
-          },
-          {
-            title: 'Choose Open Anyway',
-            description:
-              'Find the message about QuotaMew in the Security section and choose Open Anyway.',
-          },
-          {
-            title: 'Confirm the launch',
-            description:
-              'Confirm that you want to open QuotaMew. macOS may ask for Touch ID or your password.',
-          },
-        ],
-        warning:
-          'Do not disable Gatekeeper or other system-wide macOS security protections.',
-        docs: 'Read the full First Launch guide',
-      },
-    },
-
-    install: {
-      eyebrow: 'Installation',
-      title: 'Install in a few steps.',
-      steps: [
-        {
-          title: 'Download the DMG',
-          description:
-            'Download the latest QuotaMew disk image from the official release.',
-        },
-        {
-          title: 'Move QuotaMew to Applications',
-          description:
-            'Open the DMG and drag QuotaMew into the Applications folder.',
-        },
-        {
-          title: 'Open QuotaMew',
-          description:
-            'Launch QuotaMew from Applications. macOS may ask for additional approval on first launch.',
-        },
-      ],
-    },
-
+    actions: { github: 'View Stable GitHub Release', installation: 'Installation guide', firstLaunch: 'Full first-launch guide', history: 'Browse all GitHub Releases' },
+    requirements: { title: 'System requirements', platform: 'Native macOS application' },
     release: {
-      title: 'Release information',
-      version: 'Version',
-      channel: 'Channel',
-      compatibility: 'Compatibility',
-      build: 'Build',
-      artifact: 'Artifact',
-      size: 'Download size',
-      checksum: 'SHA256',
-      signed: 'Signing',
-      codesign: 'codesign verified',
-      stapled: 'Stapled ticket',
-      notarized: 'Apple notarized',
-      automaticUpdates: 'Automatic updates',
-      yes: 'Yes',
-      no: 'No',
+      title: 'Stable download', version: 'Version', channel: 'Channel', compatibility: 'Minimum macOS',
+      artifact: 'Artifact', size: 'Download size', build: 'Build', checksum: 'SHA256',
+      signed: 'Signing', codesign: 'codesign verified', stapled: 'Stapled ticket', notarized: 'Apple notarized',
+      developerID: 'Developer ID signed', yes: 'Yes', no: 'No',
+    },
+    verification: { title: 'Verify the artifact', description: 'Optional technical details for checking the downloaded DMG. The checksum identifies the release artifact; it does not replace your trust in the download source.' },
+    security: {
+      title: 'Installation and first launch',
+      source: 'Download from this site or the official GitHub Release. Open the DMG, move QuotaMew to Applications, then launch it from there.',
+      action: 'If macOS blocks first launch, use System Settings → Privacy & Security → Open Anyway only if you trust the source. Keep macOS security protections enabled.',
+      expectation: 'QuotaMew appears in the menu bar. Onboarding explains display preferences; Codex must already have a compatible local runtime and its own sign-in.',
+    },
+    channels: {
+      title: 'Release channels and updates',
+      stable: 'Stable is the recommended release and always the primary download.',
+      preview: 'Preview builds, when available, are optional prereleases with less testing and behavior that may change. A separate download appears only when a newer verified Preview exists.',
+      updates: 'Updates are installed manually: quit QuotaMew and replace the app in Applications with the new official download.',
+      history: 'GitHub Releases is the authoritative history for notes and artifacts. Older QuotaPulse-named and prerelease entries remain historical records.',
     },
   },
-
   'zh-TW': {
     eyebrow: '下載',
     title: '取得 macOS 版 QuotaMew。',
-
-    status: {
-      available: '目前可下載',
-    },
-
-    actions: {
-      download: '下載 macOS 版本',
-      github: '查看 GitHub Release',
-      installation: '安裝指南',
-    },
-
-    requirements: {
-      title: '系統需求',
-      platform: '原生 macOS 應用程式',
-    },
-
-    security: {
-      title: '散布與首次啟動',
-      source:
-        '請只從本網站或 QuotaMew 官方 GitHub Repository 下載 QuotaMew。',
-      action:
-        '你不需要停用 Gatekeeper 或其他 macOS 全域安全性功能。',
-      firstLaunch: {
-        eyebrow: '首次啟動',
-        title: 'macOS 第一次可能會阻擋 QuotaMew。',
-        description:
-          '如果 macOS 阻擋 QuotaMew，請透過「系統設定」→「隱私權與安全性」→「仍要打開」（Open Anyway）核准個別 App。',
-        steps: [
-          {
-            title: '嘗試開啟 QuotaMew',
-            description:
-              '從 Applications（應用程式）資料夾開啟 QuotaMew。macOS 可能會顯示安全性警告並阻止 App 啟動。',
-          },
-          {
-            title: '開啟「隱私權與安全性」',
-            description:
-              '開啟「系統設定」，並前往「隱私權與安全性」。',
-          },
-          {
-            title: '選擇「仍要打開」',
-            description:
-              '在安全性區段找到 QuotaMew 的相關訊息，並選擇「仍要打開」（Open Anyway）。',
-          },
-          {
-            title: '確認開啟',
-            description:
-              '確認你要開啟 QuotaMew。macOS 可能會要求使用 Touch ID 或密碼進行驗證。',
-          },
-        ],
-        warning:
-          '請勿停用 Gatekeeper 或其他 macOS 全域安全性保護機制。',
-        docs: '閱讀完整首次啟動指南',
-      },
-    },
-
-    install: {
-      eyebrow: '安裝',
-      title: '幾個步驟即可完成安裝。',
-      steps: [
-        {
-          title: '下載 DMG',
-          description:
-            '從 QuotaMew 官方 Release 下載最新的磁碟映像檔。',
-        },
-        {
-          title: '將 QuotaMew 移至 Applications',
-          description:
-            '開啟 DMG，並將 QuotaMew 拖曳到 Applications（應用程式）資料夾。',
-        },
-        {
-          title: '開啟 QuotaMew',
-          description:
-            '從 Applications 啟動 QuotaMew。首次啟動時可能需要額外的 macOS 安全性核准。',
-        },
-      ],
-    },
-
+    actions: { github: '查看穩定版 GitHub Release', installation: '安裝指南', firstLaunch: '完整首次啟動指南', history: '查看完整 GitHub 發行紀錄' },
+    requirements: { title: '系統需求', platform: '原生 macOS 應用程式' },
     release: {
-      title: '版本資訊',
-      version: '版本',
-      channel: '發布通道',
-      compatibility: '相容性',
-      build: '組建',
-      artifact: '下載檔案',
-      size: '檔案大小',
-      checksum: 'SHA256',
-      signed: '簽署方式',
-      codesign: 'codesign 驗證通過',
-      stapled: 'Stapled ticket',
-      notarized: 'Apple 公證',
-      automaticUpdates: '自動更新',
-      yes: '是',
-      no: '否',
+      title: '穩定版下載', version: '版本', channel: '發布通道', compatibility: '最低 macOS 版本',
+      artifact: '下載檔案', size: '檔案大小', build: '組建', checksum: 'SHA256',
+      signed: '簽署方式', codesign: 'codesign 驗證通過', stapled: 'Stapled ticket', notarized: 'Apple 公證',
+      developerID: 'Developer ID 簽署', yes: '是', no: '否',
+    },
+    verification: { title: '驗證下載檔案', description: '以下技術資訊可用來核對 DMG，屬於選用步驟。校驗碼可辨識發行檔案，不能取代你對下載來源的確認。' },
+    security: {
+      title: '安裝與首次啟動',
+      source: '請從本網站或官方 GitHub Release 下載。開啟 DMG，將 QuotaMew 移至 Applications（應用程式），再從該資料夾啟動。',
+      action: '若 macOS 阻擋首次啟動，請確認來源可信後，透過「系統設定 → 隱私權與安全性 → 仍要打開」核准個別 App，並保持系統安全性保護啟用。',
+      expectation: 'QuotaMew 會出現在選單列。Onboarding 會介紹顯示偏好；Codex 仍需有相容的本機 runtime，並完成自己的登入。',
+    },
+    channels: {
+      title: '發布通道與更新',
+      stable: '穩定版是建議的一般使用版本，也始終是主要下載項目。',
+      preview: '預覽版是選用的預先發行版本，測試可能較少，內容也可能變動。只有存在較新的已驗證預覽版時，才會另外顯示下載項目。',
+      updates: '目前採手動更新：先退出 QuotaMew，再以官方下載的新版取代 Applications 裡的 App。',
+      history: 'GitHub Releases 提供正式的發行說明與下載檔案。舊有 QuotaPulse 名稱及預先發行版本會保留為歷史紀錄。',
     },
   },
 } as const;
@@ -209,11 +64,6 @@ export function getDownloadContent(locale: string) {
       ? `${release.headline} 是目前公開提供的 macOS 版本。請從下方下載已驗證的 DMG。`
       : `${release.headline} is the current public release for macOS. Download the verified DMG below.`,
     requirements: { ...content.requirements, macOS: release.requirements },
-    security: {
-      ...content.security,
-      description: `${release.distributionSummary} ${locale === 'zh-TW'
-        ? 'macOS 第一次開啟時可能會顯示安全性警告。'
-        : 'macOS may show a security warning on first launch.'}`,
-    },
+    security: { ...content.security, description: release.distributionSummary },
   };
 }

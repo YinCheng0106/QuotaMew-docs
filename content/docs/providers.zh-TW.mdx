@@ -1,0 +1,50 @@
+---
+title: Providers
+description: 確認 Codex runtime 前置需求，了解 QuotaMew 的 Provider 支援與相容性限制。
+icon: Blocks
+---
+
+QuotaMew 從支援的本機來源讀取額度資訊，不會替你安裝開發工具、登入帳號或變更額度限制。
+
+| Provider | 目前穩定版狀態 | 使用預期 |
+| --- | --- | --- |
+| Codex | 已支援 | 從相容的本機 Codex runtime 取得額度視窗與重置時間 |
+| Claude Code | 實驗性／未驗證 | 只有有限的 snapshot 讀取功能；橋接設定與真實訂閱帳號驗證尚未完成 |
+
+## Codex 前置需求
+
+1. 在 Mac 安裝相容的 Codex runtime。QuotaMew 可尋找支援的 ChatGPT Desktop 內附 runtime、舊版 Codex Desktop，或獨立的 Codex CLI。
+2. 透過 Codex 完成登入，且帳號與 runtime 組合必須能提供帳號額度視窗。QuotaMew 不會要求你的 OpenAI 密碼，也不需要另外提供 API Key。
+3. 在「**設定 → Providers**」啟用 **Codex**，再從 QuotaMew 右鍵選單執行「**立即重新整理**」。
+
+對於內附 runtime，QuotaMew 會檢查標準 Applications 位置與 macOS 的應用程式探索結果；獨立 CLI 則會檢查常見安裝位置及 QuotaMew 可取得的執行環境。只透過終端機 alias 或 shell 啟動腳本才能使用的指令，不一定能被從 Finder 啟動的 App 找到。
+
+QuotaMew 會啟動找到的本機 runtime，讀取額度時不需要一直開著 Provider 的桌面視窗。桌面 App 必須內含相容的 Codex runtime 才能使用；只在瀏覽器登入 ChatGPT 不會提供本機執行檔。
+
+<Callout type="info" title="相容性取決於 runtime">
+
+穩定版包含內附 runtime 的相容處理，但不保證所有過去或未來的 ChatGPT／Codex Desktop、CLI 版本。驗證模式、runtime 回應或帳號不受支援時，額度可能無法取得。API 計費餘額與訂閱額度視窗是不同資訊。
+
+</Callout>
+
+## 如何取得 Codex 額度
+
+QuotaMew 向本機 Codex app-server 要求帳號的額度限制資訊，再呈現回報的額度與重置時間。登入驗證及與 OpenAI 的通訊由 Codex 負責。
+
+可用資訊可能包含 **5 小時**、**每週**與 **Luna Reserve**。缺少的額度會保持不可用；QuotaMew 不會推估限制或推論 Reserve 使用資格。[選單列與設定](./menu-bar.mdx)說明了呈現方式。
+
+找不到 runtime 時，Provider 會顯示不可用或未安裝狀態，不會填入推測的百分比。請確認安裝狀態與「**設定 → 一般 → Diagnostics**」，再依[沒有顯示 Codex 額度](./troubleshooting.mdx#沒有顯示-codex-額度)的步驟檢查。
+
+OpenAI 提供 [Codex app-server](https://developers.openai.com/codex/app-server/) 與[驗證方式](https://developers.openai.com/codex/auth/)的官方文件。這些文件說明 Codex 介面；QuotaMew 的相容範圍仍以目前穩定版實作為準。
+
+## Claude Code：實驗性／未驗證
+
+Claude 的支援程度與 Codex 不同。穩定版只有讀取小型、具版本的 QuotaMew 本機 snapshot 的功能；單純安裝 Claude Code 或登入，不會建立這個 snapshot。
+
+穩定版尚未實作選用的 status-line 橋接、安裝流程與真實訂閱帳號驗證。在設定啟用 Claude，不會安裝或設定橋接；沒有相容 snapshot 時，顯示未設定或不可用是預期結果。
+
+請勿為了讓此 reader 運作而取代現有 Claude status-line 指令或提供憑證。QuotaMew 不掃描 Claude 對話紀錄、Session 歷史、憑證或內部使用量快取。詳見[隱私權](./privacy.mdx)。
+
+## 其他工具
+
+目前穩定版沒有提供其他開發工具的整合；變更選單列 Provider 選擇也不會新增支援。

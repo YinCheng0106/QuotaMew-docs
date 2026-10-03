@@ -1,7 +1,7 @@
 export const appName = 'QuotaMew';
 
 export const appDescription =
-  'A lightweight native macOS menu bar app for monitoring AI coding usage and reset times.';
+  'A native macOS menu-bar app for monitoring AI coding quota and reset times.';
 
 export const docsRoute = '/docs';
 export const docsImageRoute = '/og/docs';

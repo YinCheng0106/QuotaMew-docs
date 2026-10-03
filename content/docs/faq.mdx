@@ -16,9 +16,11 @@ Yes. QuotaMew is free and open source and is distributed under the MIT License.
 
 </Accordion>
 
-<Accordion title="Do I need an OpenAI API key?" id="api-key">
+<Accordion title="Does QuotaMew need my OpenAI password or API key?" id="api-key">
 
 No separate OpenAI API key is required for the supported Codex integration.
+
+Do not provide your OpenAI password or credentials to QuotaMew. Sign in through Codex itself; see [Providers](./providers.mdx).
 
 QuotaMew communicates with the compatible Codex runtime installed on your Mac. Codex remains responsible for its own authentication and provider communication.
 
@@ -92,11 +94,9 @@ For Codex, authentication remains the responsibility of the locally installed Co
 
 </Accordion>
 
-<Accordion title="Does QuotaMew use analytics or cloud sync?" id="analytics">
+<Accordion title="Does QuotaMew send telemetry or use cloud sync?" id="analytics">
 
-The current QuotaMew application does not require a QuotaMew analytics service, account, backend, or cloud sync.
-
-Future features that change this behavior will be documented before they become part of the stable product.
+No. The current app has no telemetry, advertising analytics, QuotaMew account, backend or cloud sync. It stores local settings and bounded notification/reset state; [Privacy](./privacy.mdx) explains the boundary.
 
 </Accordion>
 
@@ -124,7 +124,25 @@ QuotaMew is currently tested primarily on Apple silicon. Intel compatibility sho
 
 Codex is the currently validated provider integration.
 
-Claude Code support is implemented as an experimental and unverified integration and may require additional setup or validation.
+Claude Code is **Experimental / Unverified**. Stable includes a limited snapshot reader, but no bridge setup or live subscribed-account validation. Installing Claude alone does not enable quota monitoring. See [Providers](./providers.mdx).
+
+</Accordion>
+
+</Accordions>
+
+## Quota and display
+
+<Accordions>
+
+<Accordion title="Does QuotaMew change my Codex quota?" id="change-quota">
+
+No. QuotaMew displays provider-reported limits and reset times. It does not add quota, reset it, or activate Luna Reserve.
+
+</Accordion>
+
+<Accordion title="Can I choose Remaining instead of Used?" id="remaining-used">
+
+Yes. Choose Remaining or Used in Settings → General. Single and Overview control how many quota windows appear in the menu bar. See [Menu Bar and Settings](./menu-bar.mdx).
 
 </Accordion>
 

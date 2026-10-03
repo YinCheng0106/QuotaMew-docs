@@ -13,6 +13,7 @@ import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { appName, docsGitConfig } from '@/lib/shared';
 import { absoluteUrl, localizedAlternates } from '@/lib/site-url';
+import { SiteFooter } from '@/components/site-footer';
 
 export default async function Page(
   props: PageProps<'/[lang]/docs/[[...slug]]'>
@@ -44,6 +45,7 @@ export default async function Page(
           })}
         />
       </DocsBody>
+      <SiteFooter locale={params.lang} />
     </DocsPage>
   );
 }

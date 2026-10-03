@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   CircleCheck,
   FlaskConical,
@@ -6,6 +7,7 @@ import {
 type ProviderContent = {
   eyebrow: string;
   title: string;
+  link: string;
   codex: {
     name: string;
     status: string;
@@ -20,8 +22,10 @@ type ProviderContent = {
 
 export function ProvidersSection({
   content,
+  docsUrl,
 }: {
   content: ProviderContent;
+  docsUrl: string;
 }) {
   return (
     <section className="border-t bg-fd-secondary/20">
@@ -46,6 +50,7 @@ export function ProvidersSection({
             {...content.claude}
           />
         </div>
+        <Link href={docsUrl} className="mt-6 inline-block text-sm underline underline-offset-4">{content.link}</Link>
       </div>
     </section>
   );

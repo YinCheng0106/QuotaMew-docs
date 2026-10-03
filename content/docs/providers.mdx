@@ -1,0 +1,50 @@
+---
+title: Providers
+description: Set up a compatible Codex runtime and understand QuotaMew's provider support limits.
+icon: Blocks
+---
+
+QuotaMew reads quota metadata from supported local sources. It does not install a coding tool, sign you in, or change your account's limits.
+
+| Provider | Current Stable status | What to expect |
+| --- | --- | --- |
+| Codex | Supported | Quota windows and reset times from a compatible local Codex runtime |
+| Claude Code | Experimental / Unverified | Limited snapshot reader; bridge setup and live subscribed-account validation are not complete |
+
+## Codex prerequisites
+
+1. Install a compatible Codex runtime on your Mac. QuotaMew can discover supported runtimes packaged with ChatGPT Desktop, legacy Codex Desktop, or a standalone Codex CLI.
+2. Complete sign-in through Codex itself, using an account/runtime combination that reports account quota windows. QuotaMew does not ask for your OpenAI password or a separate API key.
+3. Enable **Codex** in **Settings → Providers**, then use **Refresh Now** from QuotaMew's right-click menu.
+
+For packaged runtimes, QuotaMew checks standard Applications locations and macOS application discovery. For the standalone CLI, it checks common installation locations and the environment available to QuotaMew. A command that works only through a terminal alias or shell startup script may not be discoverable by an app launched from Finder.
+
+QuotaMew launches the local runtime it finds; you do not need to keep the provider's desktop window open just to read quota. Installing a desktop app is sufficient only if it contains a compatible Codex runtime. A browser-only ChatGPT session does not provide a local executable.
+
+<Callout type="info" title="Compatibility is specific to the runtime">
+
+Stable includes packaged-runtime compatibility, but it does not guarantee every past or future ChatGPT / Codex Desktop or CLI version. Account quota may be unavailable for an unsupported authentication mode, runtime response, or account. API billing balances are not subscription quota windows.
+
+</Callout>
+
+## How Codex quota is read
+
+QuotaMew asks the local Codex app-server for account rate-limit information, then displays the reported quota and reset times. Codex owns authentication and its communication with OpenAI.
+
+Available windows can include **5-hour**, **Weekly**, and **Luna Reserve**. Missing windows stay unavailable; QuotaMew does not estimate limits or infer Reserve eligibility. [Menu Bar and Settings](./menu-bar.mdx) explains presentation choices.
+
+If the runtime cannot be found, the provider reports an unavailable/not-installed state rather than a fabricated percentage. Check installation and **Settings → General → Diagnostics**, then follow [No Codex quota is shown](./troubleshooting.mdx#no-codex-quota-is-shown).
+
+OpenAI documents the [Codex app-server](https://developers.openai.com/codex/app-server/) and [authentication options](https://developers.openai.com/codex/auth/). These describe Codex interfaces; QuotaMew's compatibility remains limited to the behavior supported by the current Stable implementation.
+
+## Claude Code: Experimental / Unverified
+
+Claude is not equivalent to Codex support. Stable contains a reader for a small, versioned local snapshot made for QuotaMew. Installing or signing in to Claude Code alone does not create that snapshot.
+
+The opt-in status-line bridge, its installation flow, and live subscribed-account validation are not implemented in Stable. Enabling Claude in Settings does not install or configure a bridge. A not-configured/unavailable card is therefore expected when no compatible snapshot exists.
+
+Do not replace an existing Claude status-line command or provide credentials to make this reader work. QuotaMew does not scan Claude transcripts, session history, credentials, or internal usage caches. See [Privacy](./privacy.mdx).
+
+## Other tools
+
+Current Stable does not provide integrations for other coding tools. An unsupported tool cannot be enabled by changing the menu-bar provider selection.
