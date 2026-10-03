@@ -1,3 +1,5 @@
+import { parseTag } from './semver';
+
 export type ReleaseChannel = 'stable' | 'preview';
 export type SigningType = 'unsigned' | 'apple-development' | 'developer-id';
 
@@ -72,6 +74,7 @@ export function validateReleaseMetadata(
   const prerelease = '[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*';
   requireValid(new RegExp(`^${core}${data.channel === 'preview' ? `-${prerelease}` : ''}$`).test(version), 'version/channel');
   requireValid(tag === `v${version}`, 'tag/version');
+  try { parseTag(tag); } catch { throw new Error('Invalid release metadata: SemVer'); }
   requireValid(Number.isSafeInteger(data.build) && (data.build as number) >= 0, 'build');
   const minimumMacOS = string(data.minimumMacOS, 'minimumMacOS');
   requireValid(/^\d+(?:\.\d+){0,2}$/.test(minimumMacOS), 'minimumMacOS');

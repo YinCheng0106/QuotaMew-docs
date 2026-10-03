@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "tag": "v0.2.0",
+  "version": "0.2.0",
+  "build": 5,
+  "channel": "stable",
+  "releaseURL": "https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0",
+  "minimumMacOS": "14",
+  "bundleID": "dev.quotapulse.app",
+  "artifact": {
+    "filename": "QuotaMew-v0.2.0.dmg",
+    "downloadURL": "https://github.com/YinCheng0106/QuotaMew/releases/download/v0.2.0/QuotaMew-v0.2.0.dmg",
+    "sizeBytes": 2663814,
+    "sha256": "6e4e11d5fb033943a38ed418415d2886771d9138a38efdddf808c29de8e66230"
+  },
+  "signing": {
+    "type": "apple-development",
+    "codesignVerified": true,
+    "notarized": false,
+    "stapled": false
+  }
+}

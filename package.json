@@ -3,6 +3,7 @@
   "version": "0.0.23",
   "private": true,
   "scripts": {
+    "release:sync": "bun scripts/release-sync.ts",
     "test": "bun test tests",
     "build": "next build",
     "dev": "next dev",

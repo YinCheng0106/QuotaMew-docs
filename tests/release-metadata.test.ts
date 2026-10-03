@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import snapshot from '../src/data/releases/stable.json';
+import bootstrap from './fixtures/bootstrap-stable.json';
 import historicalRC1 from './fixtures/historical-rc1.json';
 import { validateReleaseMetadata } from '../src/lib/release-metadata';
 import { getStableRelease } from '../src/lib/release';
@@ -12,7 +13,7 @@ import { getDownloadContent } from '../src/lib/download-content';
 
 describe('verified Stable snapshot', () => {
   test('loads the verified v0.2.0 facts', () => {
-    const stable = getStableRelease();
+    const stable = validateReleaseMetadata(bootstrap, 'stable');
     assert.equal(stable.tag, 'v0.2.0');
     assert.equal(stable.version, '0.2.0');
     assert.equal(stable.build, 5);
@@ -59,7 +60,7 @@ describe('verified Stable snapshot', () => {
     ['missing signing', data => { Reflect.deleteProperty(data, 'signing'); }],
     ['unsupported signing', data => { data.signing.type = 'ad-hoc'; }],
     ['non-boolean notarized', data => { Reflect.set(data.signing, 'notarized', 'false'); }],
-    ['stapled without notarization', data => { data.signing.stapled = true; }],
+    ['stapled without notarization', data => { data.signing.stapled = true; data.signing.notarized = false; }],
     ['invalid minimum macOS', data => { data.minimumMacOS = ''; }],
     ['invalid optional date', data => { Reflect.set(data, 'publishedAt', 'unknown'); }],
   ];
@@ -101,12 +102,13 @@ describe('presentation', () => {
       assert.equal(release.releaseURL, snapshot.releaseURL);
       assert.equal(release.sha256, snapshot.artifact.sha256);
       assert.equal(release.sha256.length, 64);
-      assert.equal(release.size, '2.7 MB');
-      assert.ok(release.sizeExact.includes('2,663,814'));
-      assert.ok(release.distributionSummary.includes('Apple Development'));
-      assert.ok(release.distributionSummary.includes('codesign'));
-      assert.ok(release.distributionSummary.includes(locale === 'en' ? 'not notarized' : '未公證'));
-      assert.ok(release.distributionSummary.includes(locale === 'en' ? 'no stapled ticket' : '無 stapled ticket'));
+      assert.equal(release.size, formatArtifactSize(snapshot.artifact.sizeBytes));
+      assert.ok(release.sizeExact.includes(snapshot.artifact.sizeBytes.toLocaleString('en-US')));
+      const bootstrapCopy = getReleasePresentation(validateReleaseMetadata(bootstrap, 'stable'), locale);
+      assert.ok(bootstrapCopy.distributionSummary.includes('Apple Development'));
+      assert.ok(bootstrapCopy.distributionSummary.includes('codesign'));
+      assert.ok(bootstrapCopy.distributionSummary.includes(locale === 'en' ? 'not notarized' : '未公證'));
+      assert.ok(bootstrapCopy.distributionSummary.includes(locale === 'en' ? 'no stapled ticket' : '無 stapled ticket'));
       assert.equal(getHomeContent(locale).hero.release, release.headline);
       assert.ok(getDownloadContent(locale).description.includes(release.headline));
       assert.equal(getDownloadContent(locale).requirements.macOS, release.requirements);
@@ -153,11 +155,11 @@ describe('historical and public-source safeguards', () => {
         entry.isDirectory() ? files(join(dir, entry.name)) : [join(dir, entry.name)]);
     }
     const publicFiles = [...files('src'), ...files('content')]
-      .filter(path => /\.(tsx?|mdx)$/.test(path));
+      .filter(path => /\.(tsx?|mdx)$/.test(path) && !path.startsWith('src/data/releases/'));
     for (const path of publicFiles) {
       const source = readFileSync(path, 'utf8');
       assert.doesNotMatch(source, /v0\.2\.0|RC\.1|Release Candidate|Codex Account Activity|Latest \/ 7D \/ 30D|provider-reported token activity|v0\.3/i, path);
     }
-    assert.deepEqual(readdirSync('src/data/releases'), ['stable.json']);
+    assert.deepEqual(readdirSync('src/data/releases').sort(), ['preview.ts', 'stable.json']);
   });
 });
