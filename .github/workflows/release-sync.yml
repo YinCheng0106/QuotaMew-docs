@@ -1,0 +1,74 @@
+name: Verify release snapshots
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * 1'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-snapshot-sync
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.2'
+      - run: bun install --frozen-lockfile
+      - name: Resolve validated snapshots
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bun run release:sync | tee /tmp/release-sync-summary.txt
+      - name: Validate website
+        run: |
+          bun run test
+          bun run lint
+          bun run types:check
+          bun run build
+          git diff --check
+      - name: Propose snapshot changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- src/data/releases; then
+            echo 'Snapshots unchanged; no PR needed'
+            exit 0
+          fi
+          branch=automation/release-snapshots
+          git switch -c "$branch"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- src/data/releases/stable.json src/data/releases/preview.ts
+          git commit -m 'chore(releases): synchronize validated release snapshots'
+          remote_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$branch" --jq '.object.sha' 2>/dev/null || true)
+          gh auth setup-git --hostname github.com
+          git push --force-with-lease="refs/heads/$branch:$remote_sha" origin "HEAD:refs/heads/$branch"
+          {
+            echo 'Update last-known-good Stable/Preview snapshots from validated GitHub release facts and manifests.'
+            echo
+            echo '```text'
+            tail -n 3 /tmp/release-sync-summary.txt
+            echo '```'
+            echo
+            echo 'Validation: tests, lint, typecheck, production build, and git diff --check passed. Human review required; no deployment or auto-merge.'
+          } > /tmp/release-sync-pr.md
+          number=$(gh pr list --head "$branch" --base "$GITHUB_REF_NAME" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh pr edit "$number" --title 'chore(releases): synchronize verified snapshots' --body-file /tmp/release-sync-pr.md
+          else
+            gh pr create --base "$GITHUB_REF_NAME" --head "$branch" --title 'chore(releases): synchronize verified snapshots' --body-file /tmp/release-sync-pr.md
+          fi
