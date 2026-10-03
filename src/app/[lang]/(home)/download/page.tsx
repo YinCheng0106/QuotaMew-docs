@@ -10,12 +10,10 @@ import {
 
 import { getDownloadContent } from '@/lib/download-content';
 import { localizePath } from '@/lib/i18n';
-import { releaseConfig } from '@/lib/release';
+import { getStableRelease } from '@/lib/release';
+import { getStableReleasePresentation } from '@/lib/release-presentation';
 import { absoluteUrl, localizedAlternates } from '@/lib/site-url';
-import {
-  docsRoute,
-  productGitConfig,
-} from '@/lib/shared';
+import { docsRoute } from '@/lib/shared';
 
 export async function generateMetadata({
   params,
@@ -59,11 +57,7 @@ export default async function DownloadPage({
   const { lang } = await params;
   const content = getDownloadContent(lang);
 
-  const isAvailable =
-    releaseConfig.availability === 'available';
-
-  const githubReleasesUrl =
-    `https://github.com/${productGitConfig.user}/${productGitConfig.repo}/releases`;
+  const release = getStableReleasePresentation(lang);
 
   const installationUrl = localizePath(
     lang,
@@ -81,14 +75,12 @@ export default async function DownloadPage({
         <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-20 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border bg-fd-secondary/50 px-3 py-1 text-sm text-fd-muted-foreground">
-              <span>{content.status.releaseCandidate}</span>
+              <span>{release.channelLabel}</span>
 
               <span aria-hidden="true">·</span>
 
               <span>
-                {isAvailable
-                  ? content.status.available
-                  : content.status.comingSoon}
+                {content.status.available}
               </span>
             </div>
 
@@ -101,27 +93,16 @@ export default async function DownloadPage({
             </p>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              {isAvailable &&
-              releaseConfig.downloadUrl ? (
-                <a
-                  href={releaseConfig.downloadUrl}
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-fd-primary px-5 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
-                >
-                  <Download className="size-4" />
-                  {content.actions.download}
-                </a>
-              ) : (
-                <span
-                  aria-disabled="true"
-                  className="inline-flex h-11 cursor-not-allowed items-center justify-center gap-2 rounded-lg bg-fd-secondary px-5 text-sm font-medium text-fd-muted-foreground"
-                >
-                  <Download className="size-4" />
-                  {content.status.comingSoon}
-                </span>
-              )}
+              <a
+                href={release.downloadURL}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-fd-primary px-5 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
+              >
+                <Download className="size-4" />
+                {content.actions.download}
+              </a>
 
               <a
-                href={githubReleasesUrl}
+                href={release.releaseURL}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border bg-fd-background px-5 text-sm font-medium transition-colors hover:bg-fd-accent"
@@ -134,6 +115,7 @@ export default async function DownloadPage({
 
           <ReleaseOverview
             content={content}
+            lang={lang}
           />
         </div>
       </section>
@@ -158,9 +140,13 @@ export default async function DownloadPage({
 
 function ReleaseOverview({
   content,
+  lang,
 }: {
   content: ReturnType<typeof getDownloadContent>;
+  lang: string;
 }) {
+  const metadata = getStableRelease();
+  const release = getStableReleasePresentation(lang);
   const booleanLabel = (value: boolean) =>
     value
       ? content.release.yes
@@ -181,53 +167,51 @@ function ReleaseOverview({
       <dl className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2">
         <ReleaseItem
           label={content.release.version}
-          value={
-            releaseConfig.version ??
-            content.release.notPublished
-          }
+          value={release.versionLabel}
         />
 
         <ReleaseItem
           label={content.release.channel}
-          value={
-            releaseConfig.channel === 'rc'
-              ? content.status.releaseCandidate
-              : releaseConfig.channel === 'stable'
-                ? content.status.stable
-                : content.status.beta
-          }
+          value={release.channelLabel}
         />
 
         <ReleaseItem
           label={content.release.compatibility}
-          value={`macOS ${releaseConfig.minimumMacOS}+`}
+          value={release.requirements}
         />
 
         <ReleaseItem
           label={content.release.signed}
-          value={booleanLabel(
-            releaseConfig.developerIdSigned,
-          )}
+          value={release.signingStatus}
         />
 
         <ReleaseItem
           label={content.release.notarized}
           value={booleanLabel(
-            releaseConfig.notarized,
+            metadata.signing.notarized,
           )}
         />
 
         <ReleaseItem
           label={content.release.automaticUpdates}
-          value={booleanLabel(
-            releaseConfig.autoUpdate,
-          )}
+          value={content.release.no}
         />
-      </dl>
 
-      <p className="mt-6 text-sm leading-6 text-fd-muted-foreground">
-        {content.release.historicalNote}
-      </p>
+        <ReleaseItem label={content.release.build} value={String(metadata.build)} />
+        <ReleaseItem label={content.release.artifact} value={release.filename} />
+        <ReleaseItem label={content.release.size} value={`${release.size} (${release.sizeExact})`} />
+        <ReleaseItem label={content.release.codesign} value={booleanLabel(metadata.signing.codesignVerified)} />
+        <ReleaseItem label={content.release.stapled} value={booleanLabel(metadata.signing.stapled)} />
+
+        <div className="min-w-0 sm:col-span-2">
+          <dt className="text-sm text-fd-muted-foreground">{content.release.checksum}</dt>
+          <dd className="mt-2">
+            <code className="block select-all break-all rounded-lg bg-fd-secondary p-3 text-sm">
+              {release.sha256}
+            </code>
+          </dd>
+        </div>
+      </dl>
     </div>
   );
 }
@@ -245,7 +229,7 @@ function ReleaseItem({
         {label}
       </dt>
 
-      <dd className="mt-1 font-medium">
+      <dd className="mt-1 break-words font-medium">
         {value}
       </dd>
     </div>

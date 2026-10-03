@@ -67,6 +67,7 @@ Before submitting changes, run:
 
 ```bash
 bun run lint
+bun run test
 bun run types:check
 bun run build
 ```
@@ -114,9 +115,9 @@ The documentation source is maintained in the [quotamew-docs repository](https:/
 
 ## Release Information
 
-Download information is managed centrally by the website's release configuration.
+Website release facts come from the validated [Stable snapshot](src/data/releases/stable.json) through `getStableRelease()`. See the [data contract](docs/release-metadata.md). This README is a manually curated summary, not a generated release source.
 
-The current public release is **QuotaMew v0.2.0 RC.1**, a Release Candidate and pre-release before stable v0.2.0. Download `QuotaMew-v0.2.0-rc.1.dmg` from the [v0.2.0 RC.1 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0-rc.1). The DMG is Apple Development signed, but not Developer ID signed or notarized.
+The current public release is **QuotaMew v0.2.0 Stable**. Download `QuotaMew-v0.2.0.dmg` from the [v0.2.0 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0). The DMG is Apple Development signed and codesign verified, but not Developer ID signed or notarized, and has no stapled ticket. First launch may require **System Settings → Privacy & Security → Open Anyway**.
 
 When publishing a new QuotaMew release, the website should be updated with:
 

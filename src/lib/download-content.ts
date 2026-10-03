@@ -1,43 +1,36 @@
+import { getStableReleasePresentation } from './release-presentation';
+
 export const downloadContent = {
   en: {
     eyebrow: 'Download',
     title: 'Get QuotaMew for macOS.',
-    description:
-      'QuotaMew v0.2.0 RC.1 is the current Release Candidate for macOS. Download the verified RC.1 DMG below.',
 
     status: {
-      beta: 'Beta',
-      releaseCandidate: 'Release Candidate',
-      stable: 'Stable',
-      comingSoon: 'Public download unavailable',
       available: 'Available now',
     },
 
     actions: {
       download: 'Download for macOS',
-      github: 'View GitHub Releases',
+      github: 'View GitHub Release',
       installation: 'Installation Guide',
     },
 
     requirements: {
       title: 'System Requirements',
-      macOS: 'macOS 14 or later',
       platform: 'Native macOS application',
     },
 
     security: {
-      title: 'About the current Release Candidate',
-      description:
-        'The current Release Candidate is Apple Development signed, but it is not Developer ID signed or notarized for public distribution. macOS may therefore show a security warning the first time you open QuotaMew.',
+      title: 'Distribution and first launch',
       source:
         'Only download QuotaMew from this website or the official GitHub repository.',
       action:
         'You do not need to disable Gatekeeper or other system-wide macOS security features.',
       firstLaunch: {
         eyebrow: 'First Launch',
-        title: 'macOS may block the current Release Candidate the first time.',
+        title: 'macOS may block QuotaMew the first time.',
         description:
-          'Because the current Release Candidate is not Developer ID signed or notarized for public distribution, macOS may require you to explicitly approve QuotaMew before it can open.',
+          'If macOS blocks QuotaMew, use the individual app approval in System Settings → Privacy & Security → Open Anyway.',
         steps: [
           {
             title: 'Try to open QuotaMew',
@@ -83,66 +76,60 @@ export const downloadContent = {
         {
           title: 'Open QuotaMew',
           description:
-            'Launch QuotaMew from Applications. macOS may ask for additional approval for the current Release Candidate.',
+            'Launch QuotaMew from Applications. macOS may ask for additional approval on first launch.',
         },
       ],
     },
 
     release: {
       title: 'Release information',
-      historicalNote:
-        'The current public release is v0.2.0 RC.1, a Release Candidate. The DMG is Apple Development signed but not Developer ID signed or notarized; see the first-launch guidance before opening it.',
       version: 'Version',
       channel: 'Channel',
       compatibility: 'Compatibility',
-      signed: 'Developer ID signed',
+      build: 'Build',
+      artifact: 'Artifact',
+      size: 'Download size',
+      checksum: 'SHA256',
+      signed: 'Signing',
+      codesign: 'codesign verified',
+      stapled: 'Stapled ticket',
       notarized: 'Apple notarized',
       automaticUpdates: 'Automatic updates',
       yes: 'Yes',
       no: 'No',
-      notPublished: 'Not published yet',
     },
   },
 
   'zh-TW': {
     eyebrow: '下載',
     title: '取得 macOS 版 QuotaMew。',
-    description:
-      'QuotaMew v0.2.0 RC.1 是目前公開提供的 macOS Release Candidate，請從下方下載已驗證的 RC.1 DMG。',
 
     status: {
-      beta: 'Beta',
-      releaseCandidate: 'Release Candidate',
-      stable: '穩定版',
-      comingSoon: '目前無法下載',
       available: '目前可下載',
     },
 
     actions: {
       download: '下載 macOS 版本',
-      github: '查看 GitHub Releases',
+      github: '查看 GitHub Release',
       installation: '安裝指南',
     },
 
     requirements: {
       title: '系統需求',
-      macOS: 'macOS 14 或更新版本',
       platform: '原生 macOS 應用程式',
     },
 
     security: {
-      title: '關於目前的 Release Candidate',
-      description:
-        '目前 Release Candidate 使用 Apple Development 簽署，但尚未使用 Developer ID 簽署或完成公開散布所需的公證，因此第一次開啟 QuotaMew 時，macOS 可能會顯示安全性警告。',
+      title: '散布與首次啟動',
       source:
         '請只從本網站或 QuotaMew 官方 GitHub Repository 下載 QuotaMew。',
       action:
         '你不需要停用 Gatekeeper 或其他 macOS 全域安全性功能。',
       firstLaunch: {
         eyebrow: '首次啟動',
-        title: 'macOS 第一次可能會阻擋目前的 Release Candidate。',
+        title: 'macOS 第一次可能會阻擋 QuotaMew。',
         description:
-          '由於目前 Release Candidate 尚未使用 Developer ID 簽署或完成公開散布所需的公證，macOS 可能會要求你手動核准 QuotaMew 後才能開啟。',
+          '如果 macOS 阻擋 QuotaMew，請透過「系統設定」→「隱私權與安全性」→「仍要打開」（Open Anyway）核准個別 App。',
         steps: [
           {
             title: '嘗試開啟 QuotaMew',
@@ -188,30 +175,45 @@ export const downloadContent = {
         {
           title: '開啟 QuotaMew',
           description:
-            '從 Applications 啟動 QuotaMew。目前的 Release Candidate 可能需要額外的 macOS 安全性核准。',
+            '從 Applications 啟動 QuotaMew。首次啟動時可能需要額外的 macOS 安全性核准。',
         },
       ],
     },
 
     release: {
       title: '版本資訊',
-      historicalNote:
-        '目前公開版本為 v0.2.0 RC.1 Release Candidate。DMG 使用 Apple Development 簽署，但尚未使用 Developer ID 簽署或公證；開啟前請先閱讀首次啟動說明。',
       version: '版本',
       channel: '發布通道',
       compatibility: '相容性',
-      signed: 'Developer ID 簽署',
+      build: '組建',
+      artifact: '下載檔案',
+      size: '檔案大小',
+      checksum: 'SHA256',
+      signed: '簽署方式',
+      codesign: 'codesign 驗證通過',
+      stapled: 'Stapled ticket',
       notarized: 'Apple 公證',
       automaticUpdates: '自動更新',
       yes: '是',
       no: '否',
-      notPublished: '尚未公開發布',
     },
   },
 } as const;
 
 export function getDownloadContent(locale: string) {
-  return downloadContent[
-    locale === 'zh-TW' ? 'zh-TW' : 'en'
-  ];
+  const content = downloadContent[locale === 'zh-TW' ? 'zh-TW' : 'en'];
+  const release = getStableReleasePresentation(locale);
+  return {
+    ...content,
+    description: locale === 'zh-TW'
+      ? `${release.headline} 是目前公開提供的 macOS 版本。請從下方下載已驗證的 DMG。`
+      : `${release.headline} is the current public release for macOS. Download the verified DMG below.`,
+    requirements: { ...content.requirements, macOS: release.requirements },
+    security: {
+      ...content.security,
+      description: `${release.distributionSummary} ${locale === 'zh-TW'
+        ? 'macOS 第一次開啟時可能會顯示安全性警告。'
+        : 'macOS may show a security warning on first launch.'}`,
+    },
+  };
 }

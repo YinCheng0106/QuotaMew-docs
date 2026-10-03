@@ -6,6 +6,13 @@ import {
   Accordions,
 } from 'fumadocs-ui/components/accordion';
 import type { MDXComponents } from 'mdx/types';
+import {
+  StableDistribution,
+  StableReleaseDownload,
+  StableReleaseLink,
+  StableReleaseName,
+  StableRequirements,
+} from './stable-release';
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -16,6 +23,11 @@ export function getMDXComponents(components?: MDXComponents) {
     Accordions,
     Step,
     Steps,
+    StableReleaseName,
+    StableReleaseDownload,
+    StableReleaseLink,
+    StableRequirements,
+    StableDistribution,
     ...components,
   } satisfies MDXComponents;
 }

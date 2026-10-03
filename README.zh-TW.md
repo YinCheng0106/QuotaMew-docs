@@ -69,6 +69,7 @@ http://localhost:3000
 
 ```bash
 bun run lint
+bun run test
 bun run types:check
 bun run build
 ```
@@ -121,9 +122,9 @@ NEXT_PUBLIC_SITE_URL=https://quotamew.yincheng.app
 
 ## 版本資訊
 
-QuotaMew 的下載資訊由網站中的 release configuration 統一管理。
+網站版本資訊透過 `getStableRelease()` 取得已驗證的 [Stable snapshot](src/data/releases/stable.json)，詳見[資料契約](docs/release-metadata.md)。本 README 是人工維護的摘要，不是產生網站版本資料的來源。
 
-目前公開版本為 **QuotaMew v0.2.0 RC.1**，這是 v0.2.0 穩定版前的 Release Candidate 與 pre-release。請從 [v0.2.0 RC.1 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0-rc.1) 下載 `QuotaMew-v0.2.0-rc.1.dmg`。此 DMG 使用 Apple Development 簽署，但尚未使用 Developer ID 簽署或公證。
+目前公開版本為 **QuotaMew v0.2.0 穩定版**。請從 [v0.2.0 GitHub Release](https://github.com/YinCheng0106/QuotaMew/releases/tag/v0.2.0) 下載 `QuotaMew-v0.2.0.dmg`。此 DMG 使用 Apple Development 簽署並通過 codesign 驗證，但未使用 Developer ID 簽署、未公證，也沒有 stapled ticket。首次啟動可能需要透過「**系統設定 → 隱私權與安全性 → 仍要打開**」（Open Anyway）核准。
 
 發布新的 QuotaMew 版本時，網站應同步更新：
 
