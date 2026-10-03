@@ -10,6 +10,21 @@ import { i18n } from '@/lib/i18n';
 
 const handleI18n = createI18nMiddleware(i18n);
 
+function preserveRequestOrigin(request: NextRequest, response: NextResponse) {
+  // NextURL normalizes loopback IPs to localhost. Keep internal routing on
+  // the original origin so Next.js does not proxy it as an external request.
+  const origin = new URL(request.url).origin;
+
+  for (const header of ['x-middleware-rewrite', 'location']) {
+    const destination = response.headers.get(header);
+    if (!destination) continue;
+    const url = new URL(destination);
+    response.headers.set(header, `${origin}${url.pathname}${url.search}${url.hash}`);
+  }
+
+  return response;
+}
+
 const localizedRewrites = i18n.languages.map((locale) => {
   const publicPrefix =
     locale === i18n.defaultLanguage ? '' : `/${locale}`;
@@ -32,7 +47,7 @@ const localizedRewrites = i18n.languages.map((locale) => {
   };
 });
 
-export default function proxy(
+export default async function proxy(
   request: NextRequest,
   event: NextFetchEvent,
 ) {
@@ -56,7 +71,7 @@ export default function proxy(
 
     if (result) {
       return NextResponse.rewrite(
-        new URL(result, request.nextUrl),
+        new URL(result, request.url),
       );
     }
   }
@@ -68,7 +83,7 @@ export default function proxy(
 
       if (result) {
         return NextResponse.rewrite(
-          new URL(result, request.nextUrl),
+          new URL(result, request.url),
           {
             headers: {
               Vary: 'Accept',
@@ -80,7 +95,10 @@ export default function proxy(
   }
 
   // Normal HTML navigation uses Fumadocs i18n routing.
-  return handleI18n(request, event);
+  const response = await handleI18n(request, event);
+  return response instanceof NextResponse
+    ? preserveRequestOrigin(request, response)
+    : response;
 }
 
 export const config = {
